@@ -3,7 +3,7 @@
 // This open source software is governed by the license terms 
 // specified in the LICENSE file
 
-#library("qalqo:aws4dart:sts");
+#library("aws4dart:sts");
 
 #import("dart:crypto");
 #import("dart:io");
