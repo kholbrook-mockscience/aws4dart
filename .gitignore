@@ -1,3 +1,2 @@
-test/*.json
-test
+sandbox/node_modules
 pubspec.lock
