@@ -1,6 +1,8 @@
 dependencies:
   log4dart:
-    git: git://github.com/Qalqo/log4dart.git
+    git: git://github.com/Solvr/log4dart.git
   dart-xml:
     git: git://github.com/prujohn/dart-xml.git
+  unittest:
+    sdk: unittest
 

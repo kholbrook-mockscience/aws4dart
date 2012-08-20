@@ -8,7 +8,7 @@
 #import("dart:crypto");
 #import("dart:io");
 
-#import("package:dart-xml/Xml.dart");
+#import("package:dart-xml/lib/xml.dart");
 #import("../utils/Lib.dart");
 
 #source("sts_utils.dart");
