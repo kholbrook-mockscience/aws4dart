@@ -9,7 +9,7 @@
 #import("dart:json");
 #import("dart:io");
 
-#import("package:log4dart/lib.dart");
+#import("package:log4dart/log4dart.dart");
 
 #source("aws_utils.dart");
 #source("aws_config.dart");

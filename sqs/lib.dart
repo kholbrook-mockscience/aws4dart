@@ -7,7 +7,8 @@
 
 #import("dart:io");
 
-#import("package:log4dart/lib.dart");
+#import("package:log4dart/log4dart.dart");
+
 #import("../utils/Lib.dart");
 
 #source("sqs_client.dart");
