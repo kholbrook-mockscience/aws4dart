@@ -18,9 +18,9 @@ class AwsClient {
  * Auth key and secret used for connecting to Amazon
  */
 interface AwsCredential {
-  String get accessKeyId();
+  String get accessKeyId;
   
-  String get secretAccessKey();
+  String get secretAccessKey;
 }
 
 class Header {
@@ -29,9 +29,9 @@ class Header {
     Expect.isTrue(type.isValid);
   }
   
-  String get name() => type.name;
+  String get name => type.name;
   
-  String get value() => _value;
+  String get value => _value;
   
   set value(String val) => _value = val.trim();
   
@@ -50,7 +50,7 @@ class HeaderType implements Hashable {
   static final CONTENT_TYPE = const HeaderType("content-type");
   
   // header names must be lower case and contain no trailing whitespace 
-  bool get isValid() => name.toLowerCase() == name && name.trim() == name;
+  bool get isValid => name.toLowerCase() == name && name.trim() == name;
   
   int hashCode() => name.hashCode();
   

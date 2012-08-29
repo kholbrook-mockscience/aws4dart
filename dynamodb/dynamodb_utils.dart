@@ -27,7 +27,7 @@ class _DynamoDbRequester {
       headers.add(new Header(HeaderType.AWS_TARGET, _defaults.apiVersion.concat(action)));
       headers.add(new Header(HeaderType.CONTENT_TYPE, "application/x-amz-json-1.0"));
 
-      var signedHeaders = _signer.sign(headers, messageBody, credentials);
+      var signedHeaders = _signer.sign(headers, messageBody, credentials as AwsCredential);
       var host = _defaults.host;
       var port = 80;
       

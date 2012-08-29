@@ -52,10 +52,10 @@ class AwsConfig implements AwsCredential {
     return defaultValue;
   }
   
-  String get accessKeyId() => this["accessKeyId"];
+  String get accessKeyId => this["accessKeyId"];
   
-  String get secretAccessKey() => this["secretAccessKey"];
+  String get secretAccessKey => this["secretAccessKey"];
   
-  static Logger get _logger() => LoggerFactory.getLogger("aws4dart.AWSConfig");
+  static Logger get _logger => LoggerFactory.getLogger("aws4dart.AWSConfig");
   final Map<String,String> _properties;
 }

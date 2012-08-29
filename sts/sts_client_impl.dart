@@ -8,7 +8,7 @@ class _StsClientImpl extends AwsClient implements StsClient {
     : _defaults = new _StsConfig(awsConfig),
       super(awsConfig);
   
-  StsCredential get credentials() {
+  StsCredential get credentials {
     if(_credentials !== null && _credentials.expiration > new Date.now()) {
       return _credentials;
     } else {
@@ -47,7 +47,7 @@ class _StsClientImpl extends AwsClient implements StsClient {
   }
   
   Map<String,String> _buildParams() {
-    var params = {
+    var params = ({
       "AWSAccessKeyId" : config.accessKeyId,
       "Action" : "GetSessionToken",
       "DurationSeconds" : _defaults.duration,
@@ -55,7 +55,7 @@ class _StsClientImpl extends AwsClient implements StsClient {
       "SignatureVersion" : _defaults.signatureVersion,
       "Timestamp" : toISOString(new Date.now()),
       "Version" : _defaults.apiVersion
-    };
+    } as Map<String,String>);
 
     var toSign = Strings.join(["GET", _defaults.host, "/", queryStringify(params)], "\n");
     

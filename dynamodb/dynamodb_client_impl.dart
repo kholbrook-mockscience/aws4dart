@@ -35,7 +35,7 @@ class _DynamoDbClientImpl extends AwsClient implements DynamoDbClient {
     throw "TODO";
   }
   
-  Future<Map> deleteTable(String tablename)  => _request("DeleteTable", {"TableName": tableName}); 
+  Future<Map> deleteTable(String tableName)  => _request("DeleteTable", {"TableName": tableName}); 
   
   putItem(String tablename, Map jsonItem) {
     throw "TODO";
