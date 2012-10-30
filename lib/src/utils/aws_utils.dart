@@ -1,4 +1,4 @@
-part of aws4dart:utils;
+part of aws4dart_utils;
 
 // Copyright (c) 2012 Solvr, Inc. All rights reserved.
 //
@@ -52,7 +52,7 @@ class HeaderType implements Hashable {
   static final CONTENT_TYPE = const HeaderType("content-type");
 
   // header names must be lower case and contain no trailing whitespace
-  bool get isValid => name.toLowerCase() == name && name.trim() == name;
+  bool get isValid => (name.trim().toLowerCase() == name);
 
   int hashCode() => name.hashCode();
 

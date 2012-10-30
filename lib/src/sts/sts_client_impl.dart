@@ -1,4 +1,4 @@
-part of aws4dart:sts;
+part of aws4dart_sts;
 
 // Copyright (c) 2012 Solvr, Inc. All rights reserved.
 //

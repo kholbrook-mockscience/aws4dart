@@ -1,4 +1,4 @@
-part of aws4dart:sqs;
+part of aws4dart_sqs;
 
 // Copyright (c) 2012 Solvr, Inc. All rights reserved.
 //

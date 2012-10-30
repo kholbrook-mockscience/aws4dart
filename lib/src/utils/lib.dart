@@ -10,6 +10,7 @@ import "dart:json";
 import "dart:io";
 
 import "package:log4dart/log4dart.dart";
+export "package:log4dart/log4dart.dart";
 
 part "aws_utils.dart";
 part "aws_config.dart";

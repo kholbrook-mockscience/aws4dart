@@ -1,4 +1,4 @@
-part of aws4dart:sts:test;
+part of aws4dart_sts_test;
 
 // Copyright (c) 2012 Solvr, Inc. All rights reserved.
 //
@@ -8,7 +8,7 @@ part of aws4dart:sts:test;
 class StsXmlTest {
   StsXmlTest() {
     test("STS XML Handling", () {
-      var testXml = """
+      var testXml = '''
           <GetSessionTokenResponse xmlns="https://sts.amazonaws.com/doc/2011-06-15/">
             <GetSessionTokenResult>
               <Credentials>
@@ -29,7 +29,7 @@ class StsXmlTest {
               <RequestId>58c5dbae-abef-11e0-8cfe-09039844ac7d</RequestId>
             </ResponseMetadata>
           </GetSessionTokenResponse>
-        """;
+        ''';
       var credentials = new StsCredential.fromXml(testXml);
       Expect.equals("AKIAIOSFODNN7EXAMPLE", credentials.accessKeyId);
       Expect.equals("2011-07-11 19:55:29.611Z", credentials.expiration.toString());

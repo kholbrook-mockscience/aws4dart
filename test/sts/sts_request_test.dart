@@ -1,4 +1,4 @@
-part of aws4dart:sts:test;
+part of aws4dart_sts_test;
 
 // Copyright (c) 2012 Solvr, Inc. All rights reserved.
 //
@@ -8,7 +8,7 @@ part of aws4dart:sts:test;
 class StsRequestTest {
   StsRequestTest() {
     test("STS Requests", () {
-      var config = new AwsConfig.fromJsonFile("/Users/Lars/projects/qalqo/common/aws/test/aws-config.json");
+      var config = new AwsConfig.fromJsonFile("/Users/lt/Projects/dart/aws4dart/test/sandbox/aws-config.json");
       var client = new StsClient(config);
       client.getSessionToken().then((StsCredential credential) {
         Expect.isNotNull(credential.accessKeyId);

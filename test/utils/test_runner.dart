@@ -3,7 +3,7 @@
 // This open source software is governed by the license terms
 // specified in the LICENSE file
 
-import "../lib.dart";
+import "../../lib/src/utils/lib.dart";
 
 main() {
   var date = new Date.now();

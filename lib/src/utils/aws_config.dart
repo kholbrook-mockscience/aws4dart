@@ -1,4 +1,4 @@
-part of aws4dart:utils;
+part of aws4dart_utils;
 
 // Copyright (c) 2012 Solvr, Inc. All rights reserved.
 //
