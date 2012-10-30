@@ -22,7 +22,7 @@ Create a Dart project and add a **pubspec.yaml** file to it
 ``` 
 dependencies:
   aws4dart:
-    git: git://github.com/Qalqo/aws4dart.git
+    git: git://github.com/Solvr/aws4dart.git
 ```
 
 
@@ -33,7 +33,7 @@ Each AWS client have their own library file so for example to use
 the STS client add the following import to your program     
 
 ``` 
-#import("package:aws4dart/sts/lib.dart")
+import "package:aws4dart/")
 ``` 
 
 TODO
