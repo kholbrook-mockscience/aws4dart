@@ -62,14 +62,14 @@ class _Signer {
                    "headers" : canonicalHeaders,
                    "body" : JSON.stringify(body)
                   };
-     return Strings.join(toSign.getValues(), "\n");
+     return Strings.join(toSign.values, "\n");
    }
 
    String _generateSignature(String strToSign, String key) {
      var sha256 = new SHA256();
-     var digest = sha256.update(strToSign.charCodes()).digest();
+     var digest = sha256.update(strToSign.charCodes).digest();
 
-     var hmac = new HMAC(new SHA256(), key.charCodes());
+     var hmac = new HMAC(new SHA256(), key.charCodes);
      var hmacDigest = hmac.update(digest).digest();
 
      return CryptoUtils.bytesToBase64(hmacDigest);

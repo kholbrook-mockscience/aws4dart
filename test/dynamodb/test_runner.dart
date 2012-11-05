@@ -5,16 +5,17 @@
 
 import "dart:crypto";
 
+// TODO make into unit test
 main() {
   var strToSign = "message";
   var key = "secret";
 
   var sha256 = new SHA256();
-  var digest = sha256.update(strToSign.charCodes()).digest();
+  var digest = sha256.update(strToSign.charCodes).digest();
 
-  var hmac = new HMAC(new SHA256(), key.charCodes());
+  var hmac = new HMAC(new SHA256(), key.charCodes);
   var hmacDigest = hmac.update(digest).digest();
 
   var res = CryptoUtils.bytesToBase64(hmacDigest);
-  print("dart res: $res");
+  Expect.equals("iitKiSAELEC9R6YNPhUfqnHz77xqWtQlOVUW4scT8Rk=", res);
 }

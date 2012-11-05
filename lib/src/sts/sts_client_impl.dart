@@ -61,8 +61,8 @@ class _StsClientImpl extends AwsClient implements StsClient {
 
     var toSign = Strings.join(["GET", _defaults.host, "/", queryStringify(params)], "\n");
 
-    var hmac = new HMAC(new SHA256(), config.secretAccessKey.charCodes());
-    var hmacDigest = hmac.update(toSign.charCodes()).digest();
+    var hmac = new HMAC(new SHA256(), config.secretAccessKey.charCodes);
+    var hmacDigest = hmac.update(toSign.charCodes).digest();
     var signature = CryptoUtils.bytesToBase64(hmacDigest);
 
     params["Signature"] = signature;
