@@ -41,7 +41,7 @@ class Header {
   String _value;
 }
 
-class HeaderType implements Hashable {
+class HeaderType {
   const HeaderType(this.name, [ this.isAwsHeader = false ]);
 
   static final HOST = const HeaderType("host");
@@ -54,7 +54,7 @@ class HeaderType implements Hashable {
   // header names must be lower case and contain no trailing whitespace
   bool get isValid => (name.trim().toLowerCase() == name);
 
-  int hashCode() => name.hashCode();
+  int get hashCode => name.hashCode;
 
   final String name;
   final bool isAwsHeader;
