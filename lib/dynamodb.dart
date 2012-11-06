@@ -9,11 +9,11 @@ import "dart:crypto";
 import "dart:io";
 import "dart:json";
 
-import "utils/lib.dart";
+import "src/utils/lib.dart";
 import "sts.dart";
 
-part "dynamodb/dynamodb_client.dart";
-part "dynamodb/dynamodb_client_impl.dart";
-part "dynamodb/dynamodb_mapper.dart";
-part "dynamodb/dynamodb_utils.dart";
-part "dynamodb/signer.dart";
+part "src/dynamodb/dynamodb_client.dart";
+part "src/dynamodb/dynamodb_client_impl.dart";
+part "src/dynamodb/dynamodb_mapper.dart";
+part "src/dynamodb/dynamodb_utils.dart";
+part "src/dynamodb/signer.dart";

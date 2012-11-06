@@ -3,10 +3,11 @@
 // This open source software is governed by the license terms
 // specified in the LICENSE file
 
-library aws4dart_sqs;
+library aws4dart_s3;
 
 import "dart:io";
+import "dart:uri";
 
-import "utils/Lib.dart";
+import "src/utils/lib.dart";
 
-part "sqs/sqs_client.dart";
+part "src/s3/s3_client.dart";

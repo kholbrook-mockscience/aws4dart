@@ -9,8 +9,8 @@ import "dart:crypto";
 import "dart:io";
 
 import "package:xml/xml.dart";
-import "utils/lib.dart";
+import "src/utils/lib.dart";
 
-part "sts/sts_utils.dart";
-part "sts/sts_client.dart";
-part "sts/sts_client_impl.dart";
+part "src/sts/sts_utils.dart";
+part "src/sts/sts_client.dart";
+part "src/sts/sts_client_impl.dart";
