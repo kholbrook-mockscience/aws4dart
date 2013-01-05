@@ -1,6 +1,6 @@
 part of aws4dart_utils;
 
-// Copyright (c) 2012 Solvr, Inc. All rights reserved.
+// Copyright (c) 2013 Solvr, Inc. All rights reserved.
 //
 // This open source software is governed by the license terms
 // specified in the LICENSE file
@@ -96,7 +96,7 @@ String toUTCString(Date date) {
   };
   String pad(int val) => val < 10 ? "0$val" : "$val";
 
-  // convert to format: Mon, 11 Jun 2012 23:58:29 GMT
+  // convert to format: Mon, 11 Jun 2013 23:58:29 GMT
   var utc = date.toUtc();
   var res = "${days[utc.weekday.toString()]}, ${utc.day} ${months[utc.month.toString()]} ${utc.year} ${pad(utc.hour)}:${pad(utc.minute)}:${pad(utc.second)} GMT";
   return res;
