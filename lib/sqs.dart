@@ -7,6 +7,7 @@ library aws4dart_sqs;
 
 import "dart:io";
 
-import "src/utils/Lib.dart";
+import "src/common/aws_client.dart";
+export "src/common/aws_client.dart";
 
 part "src/sqs/sqs_client.dart";

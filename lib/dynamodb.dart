@@ -9,8 +9,9 @@ import "dart:crypto";
 import "dart:io";
 import "dart:json";
 
-import "src/utils/lib.dart";
+import "src/common/aws_client.dart";
 import "sts.dart";
+export "sts.dart";
 
 part "src/dynamodb/dynamodb_client.dart";
 part "src/dynamodb/dynamodb_client_impl.dart";

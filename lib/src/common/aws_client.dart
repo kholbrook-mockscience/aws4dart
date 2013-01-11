@@ -3,7 +3,11 @@
 // This open source software is governed by the license terms
 // specified in the LICENSE file
 
-part of aws4dart_utils;
+library aws4dart_client;
+
+import "dart:io";
+import "dart:json";
+import "package:log4dart/log4dart.dart";
 
 /**
  * Configuration values for Amazon Web Services
@@ -60,4 +64,75 @@ class AwsConfig implements AwsCredential {
 
   static Logger get _logger => LoggerFactory.getLogger("aws4dart.AWSConfig");
   final Map<String,String> _properties;
+}
+
+/**
+ * Base class for constructing Amazon web service clients
+ */
+class AwsClient {
+  AwsClient(this.config)
+    : httpClient = new HttpClient();
+
+  final HttpClient httpClient;
+  final AwsConfig config;
+}
+
+/**
+ * Auth key and secret used for connecting to Amazon
+ */
+abstract class AwsCredential {
+  String get accessKeyId;
+
+  String get secretAccessKey;
+}
+
+/**
+ * TODO describe
+ */
+class Header {
+  Header(this.type, String headerValue) {
+    value = headerValue;
+    Expect.isTrue(type.isValid);
+  }
+
+  String get name => type.name;
+
+  String get value => _value;
+
+  set value(String val) => _value = val.trim();
+
+  final HeaderType type;
+  String _value;
+}
+
+/**
+ * TODO describe
+ */
+class HeaderType {
+  const HeaderType(this.name, [ this.isAwsHeader = false ]);
+
+  static final HOST = const HeaderType("host");
+  static final AWS_AUTHORIZATION = const HeaderType("x-amzn-authorization", true);
+  static final AWS_DATE = const HeaderType("x-amz-date", true);
+  static final AWS_SECURITY_TOKEN = const HeaderType("x-amz-security-token", true);
+  static final AWS_TARGET = const HeaderType("x-amz-target", true);
+  static final CONTENT_TYPE = const HeaderType("content-type");
+
+  // header names must be lower case and contain no trailing whitespace
+  bool get isValid => (name.trim().toLowerCase() == name);
+
+  int get hashCode => name.hashCode;
+
+  final String name;
+  final bool isAwsHeader;
+}
+
+/**
+ * TODO describe
+ */
+class AwsException implements Exception {
+  AwsException(this.message, this.errorCode);
+
+  final String message;
+  final int errorCode;
 }

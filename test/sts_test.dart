@@ -1,13 +1,14 @@
-part of aws4dart_sts_test;
-
 // Copyright (c) 2013 Solvr, Inc. All rights reserved.
 //
 // This open source software is governed by the license terms
 // specified in the LICENSE file
 
-class StsXmlTest {
-  StsXmlTest() {
-    test("STS XML Handling", () {
+import "package:unittest/unittest.dart";
+import "../lib/sts.dart";
+
+main() {
+  group("sts -", () {
+    test("response parsing", () {
       var testXml = '''
           <GetSessionTokenResponse xmlns="https://sts.amazonaws.com/doc/2011-06-15/">
             <GetSessionTokenResult>
@@ -31,9 +32,18 @@ class StsXmlTest {
           </GetSessionTokenResponse>
         ''';
       var credentials = new StsCredential.fromXml(testXml);
-      Expect.equals("AKIAIOSFODNN7EXAMPLE", credentials.accessKeyId);
-      Expect.equals("2011-07-11 19:55:29.611Z", credentials.expiration.toString());
-      Expect.equals("wJalrXUtnFEMI/K7MDENG/bPxRfiCYzEXAMPLEKEY", credentials.secretAccessKey);
+      expect(credentials.accessKeyId, equals("AKIAIOSFODNN7EXAMPLE"));
+      expect(credentials.expiration.toString(), equals("2011-07-11 19:55:29.611Z"));
+      expect(credentials.secretAccessKey, equals("wJalrXUtnFEMI/K7MDENG/bPxRfiCYzEXAMPLEKEY"));
     });
-  }
+    
+    test("request handling", () {
+      var config = new AwsConfig.fromJsonFile("/Users/lt/Projects/dart/aws4dart/test/sandbox/aws-config.json");
+      var client = new StsClient(config);
+      client.getSessionToken().then((StsCredential credential) {
+        Expect.isNotNull(credential.accessKeyId);
+        print("expires at ${credential.expiration}");
+      });
+    });
+  });
 }
