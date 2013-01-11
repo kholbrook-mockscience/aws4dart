@@ -6,6 +6,5 @@ version: 0.1.0
 dependencies:
   log4dart: any
   xml: any
-  unittest:
-    sdk: unittest
+  unittest: any
 
