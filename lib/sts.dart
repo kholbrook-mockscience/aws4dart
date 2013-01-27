@@ -7,10 +7,12 @@ library aws4dart_sts;
 
 import "dart:crypto";
 import "dart:io";
+import "dart:async";
 import "package:xml/xml.dart";
 
 import "src/common/aws_client.dart";
 export "src/common/aws_client.dart";
+import "src/common/aws_utils.dart";
 
 part "src/sts/sts_utils.dart";
 part "src/sts/sts_client.dart";

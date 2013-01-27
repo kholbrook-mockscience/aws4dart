@@ -6,7 +6,7 @@
 library aws4dart_client;
 
 import "dart:io";
-import "dart:json";
+import "dart:json" as JSON;
 import "package:log4dart/log4dart.dart";
 
 /**
