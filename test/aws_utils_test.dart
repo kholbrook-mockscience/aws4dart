@@ -10,21 +10,19 @@ import "../lib/src/common/aws_utils.dart";
 
 main() {
   group("aws utils -", () {
-    /*
     test("assert crypto utils signing format", () {
       var strToSign = "message";
       var key = "secret";
     
       var sha256 = new SHA256();
-      var digest = sha256.update(strToSign.charCodes).digest();
-    
+      var digest = (sha256..add(strToSign.charCodes)).close();
+      
       var hmac = new HMAC(new SHA256(), key.charCodes);
-      var hmacDigest = hmac.update(digest).digest();
+      var hmacDigest = (hmac..add(digest)).close();
     
       var res = CryptoUtils.bytesToBase64(hmacDigest);
       expect(res, equals("iitKiSAELEC9R6YNPhUfqnHz77xqWtQlOVUW4scT8Rk="));
     });
-    */
     
     test("UTC string formatting", () {
       var date = new Date.fromMillisecondsSinceEpoch(1223380935000, isUtc:true);

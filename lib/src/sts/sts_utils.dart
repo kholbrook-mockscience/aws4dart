@@ -28,10 +28,8 @@ class StsCredential implements AwsCredential {
     return result[0].text;
   }
 
-  final String accessKeyId;
+  final String accessKeyId, secretAccessKey, sessionToken;
   final Date expiration;
-  final String secretAccessKey;
-  final String sessionToken;
 }
 
 class _StsConfig {
@@ -42,9 +40,6 @@ class _StsConfig {
 
   _StsConfig._internal(this.algorithm, this.apiVersion, this.duration, this.host, this.signatureVersion);
 
-  final String algorithm;
-  final String apiVersion;
-  final int duration;
-  final String host;
-  final int signatureVersion;
+  final String algorithm, apiVersion, host;
+  final int duration, signatureVersion;
 }
