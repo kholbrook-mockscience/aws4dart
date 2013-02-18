@@ -18,7 +18,7 @@ class S3Client extends AwsClient {
 
   Future<HttpClientResponse> _request(String method, String filename, Map headers) {
     var completer = new Completer<HttpClientResponse>();
-    var time = new Date.now();
+    var time = new DateTime.now();
     var endpoint = config["s3Endpoint"];
     var bucket = config["s3Bucket"];
 

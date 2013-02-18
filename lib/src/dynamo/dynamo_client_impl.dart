@@ -3,7 +3,7 @@
 // This open source software is governed by the license terms
 // specified in the LICENSE file
 
-part of aws4dart_dynamodb;
+part of aws4dart_dynamo;
 
 /*
  * https://github.com/Wantworthy/dynode/blob/master/lib/dynode/client.js

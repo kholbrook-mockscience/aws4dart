@@ -3,7 +3,7 @@
 // This open source software is governed by the license terms
 // specified in the LICENSE file
 
-part of aws4dart_dynamodb;
+part of aws4dart_dynamo;
 
 // TODO https://github.com/SaltwaterC/aws2js and https://github.com/Wantworthy/dynode/blob/master/lib/dynode/client.js
 // TODO check new HTTP auth v4 at http://docs.amazonwebservices.com/amazondynamodb/latest/developerguide/MakingHTTPRequests.html

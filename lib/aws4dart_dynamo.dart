@@ -3,7 +3,7 @@
 // This open source software is governed by the license terms
 // specified in the LICENSE file
 
-library aws4dart_dynamodb;
+library aws4dart_dynamo;
 
 import "package:meta/meta.dart";
 
@@ -12,12 +12,12 @@ import "dart:io";
 import "dart:json" as JSON;
 import "dart:async";
 
-import "sts.dart";
-export "sts.dart";
+import "aws4dart_sts.dart";
+export "aws4dart_sts.dart";
 import "src/common/aws_utils.dart";
 
-part "src/dynamodb/dynamodb_client.dart";
-part "src/dynamodb/dynamodb_client_impl.dart";
-part "src/dynamodb/dynamodb_mapper.dart";
-part "src/dynamodb/dynamodb_utils.dart";
-part "src/dynamodb/signer.dart";
+part "src/dynamo/dynamo_client.dart";
+part "src/dynamo/dynamo_client_impl.dart";
+part "src/dynamo/dynamo_mapper.dart";
+part "src/dynamo/dynamo_utils.dart";
+part "src/dynamo/signer.dart";

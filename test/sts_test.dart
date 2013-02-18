@@ -4,7 +4,7 @@
 // specified in the LICENSE file
 
 import "package:unittest/unittest.dart";
-import "../lib/sts.dart";
+import "../lib/aws4dart_sts.dart";
 
 main() {
   group("sts -", () {

@@ -3,7 +3,7 @@
 // This open source software is governed by the license terms
 // specified in the LICENSE file
 
-part of aws4dart_dynamodb;
+part of aws4dart_dynamo;
 
 /**
  * Request signer for Amazon DynamoDB
