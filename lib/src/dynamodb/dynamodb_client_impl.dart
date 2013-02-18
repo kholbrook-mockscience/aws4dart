@@ -5,13 +5,17 @@
 
 part of aws4dart_dynamodb;
 
-// TODO https://github.com/SaltwaterC/aws2js and https://github.com/Wantworthy/dynode/blob/master/lib/dynode/client.js
-
+/*
+ * https://github.com/Wantworthy/dynode/blob/master/lib/dynode/client.js
+ * https://github.com/xiepeng/dynamoDB
+ * https://github.com/SaltwaterC/aws2js
+ */
 class _DynamoDbClientImpl extends AwsClient implements DynamoDbClient {
   _DynamoDbClientImpl(AwsConfig config)
     : _requester = new _DynamoDbRequester(config),
       super(config);
 
+  @override
   Future<Map> createTable(String tableName) {
     var options = {
       "TableName": tableName,
@@ -29,40 +33,51 @@ class _DynamoDbClientImpl extends AwsClient implements DynamoDbClient {
     return _request("CreateTable", options);
   }
 
+  @override
   Future<Map> listTables() => _request("ListTables");
 
+  @override
   Future<Map> describeTable(String tableName) => _request("DescribeTable", {"TableName": tableName});
 
+  @override
   updateTable(String tablename) {
     throw "TODO";
   }
 
+  @override
   Future<Map> deleteTable(String tableName)  => _request("DeleteTable", {"TableName": tableName});
-
+  
+  @override
   putItem(String tablename, Map jsonItem) {
     throw "TODO";
   }
 
+  @override
   updateItem(String tablename, String itemHash,  Map itemAttributes) {
     throw "TODO";
   }
 
+  @override
   getItem(String tablename, String itemHash) {
     throw "TODO";
   }
 
+  @override
   deleteItem(String tablename, String itemHash) {
     throw "TODO";
   }
 
+  @override
   query(String tablename, String itemHash) {
     throw "TODO";
   }
 
+  @override
   scan(String tablename, Map options) {
     throw "TODO";
   }
 
+  @override
   batchGetItem(Map<String, Map> batchQuery) {
     throw "TODO";
   }

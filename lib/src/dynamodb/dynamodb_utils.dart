@@ -19,12 +19,12 @@ class _DynamoDbRequester {
   Future<Map> send(String action, Map messageBody, HttpClient httpClient) {
     var completer = new Completer<String>();
     Future<StsCredential> sessionFuture = _stsClient.getSessionToken();
-    sessionFuture.handleException((e) => completer.completeException(e));
+    sessionFuture.catchError((e) => completer.completeError(e));
 
     sessionFuture.then((StsCredential credentials) {
       var headers = new List<Header>();
       headers.add(new Header(HeaderType.HOST, _defaults.host));
-      headers.add(new Header(HeaderType.AWS_DATE, toUTCString(new Date.now())));
+      headers.add(new Header(HeaderType.AWS_DATE, toUTCString(new DateTime.now())));
       headers.add(new Header(HeaderType.AWS_SECURITY_TOKEN, credentials.sessionToken));
       headers.add(new Header(HeaderType.AWS_TARGET, _defaults.apiVersion.concat(action)));
       headers.add(new Header(HeaderType.CONTENT_TYPE, "application/x-amz-json-1.0"));
@@ -43,7 +43,7 @@ class _DynamoDbRequester {
       // Handle response
       conn.onResponse = (HttpClientResponse response) {
         if(response.statusCode != 200) {
-          completer.completeException(new AwsException("DynamoDB faild with", response.statusCode));
+          completer.completeError(new AwsException("DynamoDB faild with", response.statusCode));
         } else {
           StringInputStream stream = new StringInputStream(response.inputStream);
           StringBuffer body = new StringBuffer();
@@ -54,7 +54,7 @@ class _DynamoDbRequester {
           };
         }
       };
-      conn.onError = (e) => completer.completeException(e);
+      conn.onError = (e) => completer.completeError(e);
     });
 
     return completer.future;
@@ -73,7 +73,6 @@ class _DynamoDbConfig {
 
   _DynamoDbConfig._internal(this.apiVersion, this.host);
 
-  final String apiVersion;
-  final String host;
+  final String apiVersion, host;
 }
 

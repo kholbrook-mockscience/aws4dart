@@ -16,8 +16,8 @@ class AwsConfig implements AwsCredential {
   factory AwsConfig.fromJsonFile([String configPath = "aws-config.json"]) {
     var configFile = new File(configPath);
     _logger.debug("using config file ${configFile.fullPathSync()}");
-    Expect.isTrue(configFile.existsSync());
-    return new AwsConfig.fromJson(configFile.readAsTextSync());
+    assert(configFile.existsSync());
+    return new AwsConfig.fromJson(configFile.readAsStringSync());
   }
 
   factory AwsConfig.fromJson(String json) {
@@ -33,8 +33,10 @@ class AwsConfig implements AwsCredential {
   }
 
   AwsConfig._internal(this._properties) {
-    Expect.isNotNull(accessKeyId, "no accessKeyId specified");
-    Expect.isNotNull(secretAccessKey, "no secretAccessKey specified");
+    if(accessKeyId == null) 
+      throw new ArgumentError("no accessKeyId specified");
+    if(secretAccessKey == null)
+      throw new ArgumentError("no secretAccessKey specified");
   }
 
   /**

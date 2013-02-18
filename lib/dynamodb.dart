@@ -5,13 +5,16 @@
 
 library aws4dart_dynamodb;
 
+import "package:meta/meta.dart";
+
 import "dart:crypto";
 import "dart:io";
-import "dart:json";
+import "dart:json" as JSON;
+import "dart:async";
 
-import "src/common/aws_client.dart";
 import "sts.dart";
 export "sts.dart";
+import "src/common/aws_utils.dart";
 
 part "src/dynamodb/dynamodb_client.dart";
 part "src/dynamodb/dynamodb_client_impl.dart";

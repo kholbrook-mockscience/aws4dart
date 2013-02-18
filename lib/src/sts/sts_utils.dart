@@ -13,7 +13,7 @@ class StsCredential implements AwsCredential {
     var parsed = XML.parse(xml);
 
     var accessKey = _getTag("AccessKeyId", parsed);
-    var expire = new Date.fromString(_getTag("Expiration", parsed));
+    var expire = DateTime.parse(_getTag("Expiration", parsed));
     var secretKey = _getTag("SecretAccessKey", parsed);
     var session = _getTag("SessionToken", parsed);
 
@@ -24,12 +24,12 @@ class StsCredential implements AwsCredential {
 
   static String _getTag(String tag, var parsedXml) {
     var result = parsedXml.query(tag);
-    Expect.equals(1, result.length);
+    assert(result.length == 1);
     return result[0].text;
   }
 
   final String accessKeyId, secretAccessKey, sessionToken;
-  final Date expiration;
+  final DateTime expiration;
 }
 
 class _StsConfig {

@@ -5,9 +5,9 @@
 
 library aws4dart_utils;
 
-String toISOString(Date date) => date.toString().replaceFirst(" ", "T");
+String toISOString(DateTime date) => date.toString().replaceFirst(" ", "T");
 
-String toUTCString(Date date) {
+String toUTCString(DateTime date) {
   final days = const {
     "0": "Mon",
     "1": "Tue",

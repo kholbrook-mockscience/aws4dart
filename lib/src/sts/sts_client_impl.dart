@@ -11,7 +11,7 @@ class _StsClientImpl extends AwsClient implements StsClient {
       super(awsConfig);
 
   StsCredential get credentials {
-    if(_credentials != null && _credentials.expiration > new Date.now()) {
+    if(_credentials != null && _credentials.expiration > new DateTime.now()) {
       return _credentials;
     } else {
       return null;
@@ -31,7 +31,7 @@ class _StsClientImpl extends AwsClient implements StsClient {
       var conn = httpClient.get(host, port, path);
       conn.onResponse = (HttpClientResponse response) {
         if(response.statusCode != 200) {
-          completer.completeException(new AwsException("STS faild with", response.statusCode));
+          completer.completeError(new AwsException("STS faild with", response.statusCode));
         } else {
           StringInputStream stream = new StringInputStream(response.inputStream);
           StringBuffer body = new StringBuffer();
@@ -42,7 +42,7 @@ class _StsClientImpl extends AwsClient implements StsClient {
           };
         }
       };
-      conn.onError = (e) => completer.completeException(e);
+      conn.onError = (e) => completer.completeError(e);
     }
 
     return completer.future;
@@ -55,7 +55,7 @@ class _StsClientImpl extends AwsClient implements StsClient {
       "DurationSeconds" : _defaults.duration,
       "SignatureMethod" : _defaults.algorithm,
       "SignatureVersion" : _defaults.signatureVersion,
-      "Timestamp" : toISOString(new Date.now()),
+      "Timestamp" : toISOString(new DateTime.now()),
       "Version" : _defaults.apiVersion
     } as Map<String,String>);
 

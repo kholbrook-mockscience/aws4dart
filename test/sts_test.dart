@@ -41,7 +41,7 @@ main() {
       var config = new AwsConfig.fromJsonFile("/Users/lt/Projects/dart/aws4dart/test/sandbox/aws-config.json");
       var client = new StsClient(config);
       client.getSessionToken().then((StsCredential credential) {
-        Expect.isNotNull(credential.accessKeyId);
+        expect(credential.accessKeyId, isNotNull);
         print("expires at ${credential.expiration}");
       });
     });

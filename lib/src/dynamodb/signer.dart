@@ -21,13 +21,13 @@ class _Signer {
      var canonicalHeaders = _canonicalizeHeaders(headersToSign);
      var strToSign = _getStringToSign(canonicalHeaders, body);
      var signature = _generateSignature(strToSign, credentials.secretAccessKey);
-     var authorization = "AWS3 AWSAccessKeyId=${credentials.accessKeyId},Algorithm=HmacSHA256,SignedHeaders=${Strings.join(headersToSign,':')},Signature=$signature";
+     var authorization = "AWS3 AWSAccessKeyId=${credentials.accessKeyId},Algorithm=HmacSHA256,SignedHeaders=${headersToSign.join(':')},Signature=$signature";
 
      headers.add(new Header(HeaderType.AWS_AUTHORIZATION, authorization));
      return headers;
    }
 
-   List<Header> _getHeadersToSign(List<Header> headers) => headers.filter((Header header) => header.type.isAwsHeader);
+   List<Header> _getHeadersToSign(List<Header> headers) => headers.where((Header header) => header.type.isAwsHeader);
 
    String _canonicalizeHeaders(List<Header> headers) {
      var headerMap = new Map<HeaderType, String>();
@@ -42,16 +42,16 @@ class _Signer {
        }
      });
      // sort headers by type name
-     List<HeaderType> sorted = new List.from(headerMap.getKeys());
+     var sorted = new List.from(headerMap.keys);
      sorted.sort((HeaderType a, HeaderType b) => (a.name).compareTo(b.name));
 
      // convert value into format header-name:header-value\n
-     List<String> result = [];
+     var result = <String>[];
      sorted.forEach((HeaderType type) {
        result.add("${type.name}:${headerMap[type]}\n");
      });
 
-     return Strings.join(result, "");
+     return result.join("");
    }
 
    String _getStringToSign(String canonicalHeaders, Map body) {
@@ -62,15 +62,15 @@ class _Signer {
                    "headers" : canonicalHeaders,
                    "body" : JSON.stringify(body)
                   };
-     return Strings.join(toSign.values, "\n");
+     return toSign.values.join("\n");
    }
 
    String _generateSignature(String strToSign, String key) {
      var sha256 = new SHA256();
-     var digest = sha256.update(strToSign.charCodes).digest();
+     var digest = (sha256..add(strToSign.charCodes)).close();
 
      var hmac = new HMAC(new SHA256(), key.charCodes);
-     var hmacDigest = hmac.update(digest).digest();
+     var hmacDigest = (hmac..add(digest)).close();
 
      return CryptoUtils.bytesToBase64(hmacDigest);
    }

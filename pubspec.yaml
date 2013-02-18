@@ -7,3 +7,4 @@ dependencies:
   unittest: any
   xml: any
   log4dart: any
+  meta: any
