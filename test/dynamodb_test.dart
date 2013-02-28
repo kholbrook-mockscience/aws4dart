@@ -4,5 +4,9 @@
 // specified in the LICENSE file
 
 main() {
-  
+  // https://github.com/aws/aws-sdk-js/blob/master/test/services/dynamodb.spec.coffee
+  // https://github.com/ca98am79/connect-dynamodb
 }
+
+
+
