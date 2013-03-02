@@ -9,6 +9,12 @@ part of aws4dart;
  * Amazon S3 client
  */
 class S3Client {
+  factory S3Client(Injector injector) {
+    return new S3Client._internal();
+  }
+  
+  S3Client._internal();
+  
   /*
    * TODO
    * 1. http://docs.amazonwebservices.com/AmazonS3/latest/API/APIRest.html

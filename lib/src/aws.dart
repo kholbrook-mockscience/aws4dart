@@ -9,9 +9,14 @@ part of aws4dart;
  * TODO describe
  */
 class Aws {
-  Aws(): 
+  factory Aws(Module module) {
+    var injector = new Injector(module);
+    return new Aws._internal(injector);
+  }
+  
+  Aws._internal(Injector injector): 
     config = new AwsConfig(),
-    s3 = new S3Client();
+    s3 = new S3Client(injector);
   
   final S3Client s3;
   final AwsConfig config;
@@ -73,5 +78,11 @@ class AwsConfig {
   final Map<String,String> _properties;
 }
 
+class _AwsModule extends Module {
+  @override 
+  configure() {
+    //bind(TestClass).toInstance(new TestClass());
+  }
+}
 
 

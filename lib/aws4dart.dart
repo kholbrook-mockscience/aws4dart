@@ -10,11 +10,21 @@ import "dart:io";
 import "dart:json" as JSON;
 import "dart:uri";
 
+import "package:dice/dice.dart";
 import "package:log4dart/log4dart_vm.dart";
+import "package:meta/meta.dart";
 
 part "src/aws.dart";
 part "src/s3/s3_client.dart";
 part "src/s3/s3_response.dart";
 
-Aws aws = new Aws();
+/**
+ * AWS client for Dart
+ */
+Aws aws = new Aws(new _AwsModule());
+
+/**
+ * AWS test client for Dart
+ */
+Aws awsClient(Module module) => new Aws(module);
 

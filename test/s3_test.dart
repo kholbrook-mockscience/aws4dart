@@ -9,10 +9,9 @@ import "../lib/aws4dart.dart";
 main() {
   // https://github.com/aws/aws-sdk-js/blob/master/test/services/s3.spec.coffee
   group("s3 client -", () {
-    aws.config.update("{accessKeyId: 'AKID', secretAccessKey: 'SECRET'}");
+    aws.config.update(r"{'accessKeyId': 'AKID', 'secretAccessKey': 'SECRET'}");
     
     var s3 = aws.s3;
-    // TODO authenticate client
     // TODO IOC https://groups.google.com/forum/?fromgroups=#!topic/google-guice/DUX3xEwGtGs
     
     test("listBuckets", () {
