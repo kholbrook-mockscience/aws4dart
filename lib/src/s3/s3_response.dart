@@ -8,7 +8,23 @@ part of aws4dart;
 /**
  * List of all buckets owned by the authenticated user
  */
-abstract class BucketsResult {
+class BucketsResult {
+  BucketsResult(this.buckets, this.owner);
   
+  final List<Bucket> buckets;
+  final BucketOwner owner;
+}
+
+class Bucket {
+  Bucket(this.name, this.creationDate);
+  
+  final String name;
+  final DateTime creationDate;
+}
+
+class BucketOwner {
+  BucketOwner(this.id, this.displayName);
+  
+  final String id, displayName;
 }
 

@@ -5,12 +5,16 @@
 
 library aws4dart;
 
-import "dart:io";
-import "dart:uri";
 import "dart:async";
+import "dart:io";
+import "dart:json" as JSON;
+import "dart:uri";
 
-//import "src/common/aws_client.dart";
-//export "src/common/aws_client.dart";
+import "package:log4dart/log4dart_vm.dart";
 
+part "src/aws.dart";
 part "src/s3/s3_client.dart";
 part "src/s3/s3_response.dart";
+
+Aws aws = new Aws();
+

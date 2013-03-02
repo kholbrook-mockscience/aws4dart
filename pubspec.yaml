@@ -7,4 +7,5 @@ dependencies:
   unittest: any
   xml: any
   log4dart: any
-  meta: any
+  dice:
+    git: git://github.com/ltackmann/dice.git
