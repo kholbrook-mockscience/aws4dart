@@ -8,13 +8,24 @@ var AWS = require('aws-sdk');
 // AWS.config.update({accessKeyId: 'AKID', secretAccessKey: 'SECRET'});
 
 // Instead, do this:
-AWS.config.loadFromPath('./credentials.json');
+AWS.config.loadFromPath('/Users/lt/Documents/aws-config.json');
 
 // Set your region for future requests.
-AWS.config.update({region: 'us-east-1'});
+//AWS.config.update({region: 'us-east-1'});
+
+var s3 = new AWS.S3();
+// list buckets 
+s3.client.listBuckets({}, function(err, data) {
+  if (err) {
+    console.log("Error uploading data: ", err);
+  } else {
+    console.log("list bukets");
+    console.dir(data);
+  }
+});
 
 // Create a bucket and put something in it.
-var s3 = new AWS.S3();
+/*
 s3.client.createBucket({Bucket: 'myBucket'}, function() {
   var data = {Bucket: 'myBucket', Key: 'myKey', Body: 'Hello!'};
   s3.client.putObject(data, function(err, data) {
@@ -25,3 +36,4 @@ s3.client.createBucket({Bucket: 'myBucket'}, function() {
     }
   });
 });
+*/

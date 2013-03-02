@@ -13,3 +13,4 @@ import "dart:async";
 //export "src/common/aws_client.dart";
 
 part "src/s3/s3_client.dart";
+part "src/s3/s3_response.dart";

@@ -3,6 +3,12 @@
 // This open source software is governed by the license terms
 // specified in the LICENSE file
 
-main() {
-  // https://github.com/aws/aws-sdk-js/blob/master/test/services/s3.spec.coffee
+part of aws4dart;
+
+/**
+ * List of all buckets owned by the authenticated user
+ */
+abstract class BucketsResult {
+  
 }
+
