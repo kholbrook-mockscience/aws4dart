@@ -36,12 +36,12 @@ part "src/s3/s3_client.dart";
 part "src/s3/s3_response.dart";
 
 /**
- * AWS client 
+ * Get an AWS client 
  */
-AwsClient awsClient = new AwsClient(new _AwsModule());
+AwsClient getAwsClient() => new AwsClient(new _AwsModule());
 
 /**
- * AWS test client 
+ * Get an AWS client, suitable for unit and integration testing.
  */
-AwsClient awsTestClient(Module module) => new AwsClient(module);
+AwsClient getAwsTestClient(Module module) => new AwsClient(module);
 

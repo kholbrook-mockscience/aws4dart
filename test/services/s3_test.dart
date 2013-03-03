@@ -16,13 +16,13 @@
 part of aws4dart_test;
 
 class S3Test {
-  S3Test(AwsClient aws) {
+  S3Test(AwsClient awsClient) {
     // https://github.com/aws/aws-sdk-js/blob/master/test/services/s3.spec.coffee
     group("s3 client -", () {
-      var s3 = aws.s3;
+      var s3 = awsClient.s3;
       
-      test("authenticate", () {
-        aws.config.update(r'{"accessKeyId": "AKID", "secretAccessKey": "SECRET"}');
+      test("configure interface", () {
+        awsClient.config.update(r'{"accessKeyId": "AKID", "secretAccessKey": "SECRET"}');
       });
       
       test("listBuckets", () {

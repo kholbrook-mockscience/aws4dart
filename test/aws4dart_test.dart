@@ -27,8 +27,8 @@ part "services/dynamodb_test.dart";
 part "services/s3_test.dart";
 
 main() {
-  var aws = awsTestClient(new AwsTestModule());
-  new S3Test(aws);
+  var awsClient = getAwsTestClient(new AwsTestModule());
+  new S3Test(awsClient);
 }
 
 /*
