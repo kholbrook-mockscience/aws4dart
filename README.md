@@ -197,7 +197,3 @@ Supported Services
   </tbody>
 </table>
 
-
-License
--------
-BSD License (Same as Dart itself). See LICENSE file.  

@@ -19,19 +19,14 @@ part of aws4dart;
  * Amazon S3 client
  */
 class S3Client {
+  // http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3/Client.html
+  
   factory S3Client(Injector injector) {
     var rpcClient = injector.getInstance(AwsRpcClient);
     return new S3Client._internal(rpcClient);
   }
   
   S3Client._internal(this._rpcClient);
-  
-  /*
-   * TODO
-   * 1. http://docs.amazonwebservices.com/AmazonS3/latest/API/APIRest.html
-   * 2. http://docs.aws.amazon.com/AmazonS3/latest/API/APIRest.html
-   * 3. http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3/Client.html
-   */
   
   /**
    *  Calls the AbortMultipartUpload API operation.
