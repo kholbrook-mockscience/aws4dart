@@ -27,7 +27,7 @@ main() {
     		var params = {Bucket: 'myBucket', Key: 'myKey', Body: 'Hello!'};
     		awsClient.s3.putObject(params).then(() { 
     			print( (err) ? err : "Successfully uploaded data to myBucket/myKey" );
-  		});
+  			});
 	});
 }
 ```
