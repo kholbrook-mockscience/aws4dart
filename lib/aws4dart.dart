@@ -1,8 +1,17 @@
-// Copyright (c) 2013 Solvr, Inc. All rights reserved.
-//
-// This open source software is governed by the license terms
-// specified in the LICENSE file
-
+/*
+ * Copyright 2013 Solvr, Inc. All rights reserved.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"). You
+ * may not use this file except in compliance with the License. A copy of
+ * the License is located at
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * or in the "license" file accompanying this file. This file is
+ * distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF
+ * ANY KIND, either express or implied. See the License for the specific
+ * language governing permissions and limitations under the License.
+ */
 library aws4dart;
 
 import "dart:async";
@@ -19,6 +28,10 @@ import "package:xml/xml.dart";
 import "src/aws_utils.dart";
 
 part "src/aws.dart";
+// dynamodb
+part "src/dynamodb/dynamodb_client.dart";
+part "src/dynamodb/dynamodb_response.dart";
+// s3
 part "src/s3/s3_client.dart";
 part "src/s3/s3_response.dart";
 
