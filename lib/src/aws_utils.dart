@@ -5,6 +5,8 @@
 
 library aws4dart_utils;
 
+import "package:xml/xml.dart";
+
 String toISOString(DateTime date) => date.toString().replaceFirst(" ", "T");
 
 String toUTCString(DateTime date) {
@@ -93,3 +95,10 @@ class HeaderType {
   final bool isAwsHeader;
 }
 
+String getString(String name, XmlElement elm) => convertElement(name, elm, (XmlElement elm) => elm.text);
+
+Object convertElement(String name, XmlElement elm, Object converter(XmlElement xml)) {
+  var result = elm.query(name);
+  assert(result.length == 1);
+  return converter(result[0]);
+}

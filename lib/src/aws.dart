@@ -78,11 +78,45 @@ class AwsConfig {
   final Map<String,String> _properties;
 }
 
+/**
+ * TODO describe
+ */
+class AwsError implements Error {
+  AwsError(this.errorMessage, this.errorCode);
+  
+  final String errorMessage;
+  final int errorCode;
+}
+
+/**
+ * Client for making HTTP requests against Amazon's web services
+ */
+class AwsRpcClient {
+  AwsRpcClient();
+
+  Future<String> getXml(String url) {
+    var completer = new Completer<String>();
+    http.get(url).then((http.Response response) {
+      if(response.statusCode != 200) {
+        completer.completeError(new AwsError("STS faild with", response.statusCode));
+      } else {
+        completer.complete(response.body);
+      }
+    });
+    
+    return completer.future;
+  }
+}
+
 class _AwsModule extends Module {
   @override 
   configure() {
-    //bind(TestClass).toInstance(new TestClass());
+    bind(AwsRpcClient).toInstance(new AwsRpcClient());
   }
 }
+
+
+
+
 
 

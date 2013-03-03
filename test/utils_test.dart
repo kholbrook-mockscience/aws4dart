@@ -6,7 +6,7 @@
 import "dart:crypto";
 import "package:unittest/unittest.dart";
 
-import "../lib/src/common/aws_utils.dart";
+import "../lib/src/aws_utils.dart";
 
 main() {
   group("aws utils -", () {

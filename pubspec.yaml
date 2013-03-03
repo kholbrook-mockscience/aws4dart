@@ -1,11 +1,14 @@
 name: aws4dart
 version: 0.1.0
 author: Lars Tackmann <lars@solvr.io>
-description: A SDK for using Amazon web services from Dart
-homepage: https://github.com/Solvr/aws4dart
+description: AWS SDK for Dart
+homepage: https://github.com/ltackmann/aws4dart
 dependencies:
-  unittest: any
-  xml: any
-  log4dart: any
   dice:
     git: git://github.com/ltackmann/dice.git
+  http: any
+  log4dart: any
+  meta: any
+  unittest: any
+  xml: any
+

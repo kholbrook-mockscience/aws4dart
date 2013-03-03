@@ -10,10 +10,11 @@ part of aws4dart;
  */
 class S3Client {
   factory S3Client(Injector injector) {
-    return new S3Client._internal();
+    var rpcClient = injector.getInstance(AwsRpcClient);
+    return new S3Client._internal(rpcClient);
   }
   
-  S3Client._internal();
+  S3Client._internal(this._rpcClient);
   
   /*
    * TODO
@@ -27,8 +28,13 @@ class S3Client {
    * See also [Amazon S3 Documentation for ListBuckets](http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTServiceGET.html)
    */
   Future<BucketsResult> listBuckets() {
-    
+    var completer = new Completer<BucketsResult>();
+    _rpcClient.getXml(r"/listBuckets").then((String xml) {
+      var dom = XML.parse(xml);
+      completer.complete(new BucketsResult.fromXml(dom));
+    });
+    return completer.future;
   }
+  
+  final AwsRpcClient _rpcClient;
 }
-
-
