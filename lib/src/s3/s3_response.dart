@@ -10,16 +10,9 @@ part of aws4dart;
  */
 class BucketsResult {
   factory BucketsResult.fromXml(XmlElement elm) {
-    var owner = convertElement("Owner", elm, (e) => new BucketOwner.fromXml(e));
-    /*
-     *  var o = new BucketOwner.fromXml(_getElement("Owner", parsed));
-    var b = [ new Bucket.fromXml(_getElement("Owner", parsed)) ];
-    var accessKey = _getTag("AccessKeyId", parsed);
-    var expire = DateTime.parse(_getTag("Expiration", parsed));
-    var secretKey = _getTag("SecretAccessKey", parsed);
-    var session = _getTag("SessionToken", parsed);
-    */
-    return new BucketsResult(null, owner);
+    var owner = convertXmlElement("Owner", elm, (e) => new BucketOwner.fromXml(e));
+    var buckets = convertXmlElementList("Bucket", elm, (e) => new Bucket.fromXml(e));
+    return new BucketsResult(buckets, owner);
   }
   
   BucketsResult(this.buckets, this.owner);
@@ -28,9 +21,14 @@ class BucketsResult {
   final BucketOwner owner;
 }
 
+/**
+ * TODO describe
+ */
 class Bucket {
-  factory Bucket.fromXml(XmlElement dom) {
-    
+  factory Bucket.fromXml(XmlElement elm) {
+    var name = getXmlAsString("Name", elm);
+    var creationDate = getXmlAsDate("CreationDate", elm);
+    return new Bucket(name,creationDate);
   }
   
   Bucket(this.name, this.creationDate);
@@ -39,10 +37,13 @@ class Bucket {
   final DateTime creationDate;
 }
 
+/**
+ * TODO describe
+ */
 class BucketOwner {
   factory BucketOwner.fromXml(XmlElement elm) {
-    var id = getString("ID", elm);
-    var displayName = getString("DisplayName", elm);
+    var id = getXmlAsString("ID", elm);
+    var displayName = getXmlAsString("DisplayName", elm);
     return new BucketOwner(id, displayName);
   }
   

@@ -95,10 +95,18 @@ class HeaderType {
   final bool isAwsHeader;
 }
 
-String getString(String name, XmlElement elm) => convertElement(name, elm, (XmlElement elm) => elm.text);
+String getXmlAsString(String name, XmlElement elm) => convertXmlElement(name, elm, (XmlElement elm) => elm.text);
 
-Object convertElement(String name, XmlElement elm, Object converter(XmlElement xml)) {
+DateTime getXmlAsDate(String name, XmlElement elm) => DateTime.parse(getXmlAsString(name, elm));
+
+Object convertXmlElement(String name, XmlElement elm, Object converter(XmlElement xml)) {
   var result = elm.query(name);
   assert(result.length == 1);
   return converter(result[0]);
+}
+
+List<Object> convertXmlElementList(String name, XmlElement elm, Object converter(XmlElement xml)) {
+  var result = elm.query(name);
+  var converted = result.map(converter);
+  return new List.from(converted);
 }
