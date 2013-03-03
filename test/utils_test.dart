@@ -25,7 +25,7 @@ main() {
     });
     
     test("UTC string formatting", () {
-      var date = new Date.fromMillisecondsSinceEpoch(1223380935000, isUtc:true);
+      var date = new DateTime.fromMillisecondsSinceEpoch(1223380935000, isUtc:true);
       
       expect(date.toUtc, isNot(equals("Wen, 7 Oct 2008 12:02:15 GMT")), reason:"check if internal UTC format is compatible with amazon");
       expect(toUTCString(date), equals("Wen, 7 Oct 2008 12:02:15 GMT"));

@@ -8,13 +8,13 @@ part of aws4dart;
 /**
  * TODO describe
  */
-class Aws {
-  factory Aws(Module module) {
+class AwsClient {
+  factory AwsClient(Module module) {
     var injector = new Injector(module);
-    return new Aws._internal(injector);
+    return new AwsClient._internal(injector);
   }
   
-  Aws._internal(Injector injector): 
+  AwsClient._internal(Injector injector): 
     config = new AwsConfig(),
     s3 = new S3Client(injector);
   
