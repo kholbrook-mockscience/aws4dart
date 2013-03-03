@@ -106,7 +106,7 @@ Object convertXmlElement(String name, XmlElement elm, Object converter(XmlElemen
 }
 
 List<Object> convertXmlElementList(String name, XmlElement elm, Object converter(XmlElement xml)) {
-  var result = elm.query(name);
+  var result = elm.queryAll(name);
   var converted = result.map(converter);
   return new List.from(converted);
 }
