@@ -12,29 +12,26 @@
  * ANY KIND, either express or implied. See the License for the specific
  * language governing permissions and limitations under the License.
  */
+
+/**
+ * AWS SDK for Dart
+ */
 library aws4dart;
 
-import "dart:async";
 import "dart:io";
 import "dart:json" as JSON;
-import "dart:uri";
 
-import "package:dice/dice.dart";
-//import "package:http/http.dart" as http;
+import 'package:dice/dice.dart';
 import "package:log4dart/log4dart_vm.dart";
-import "package:meta/meta.dart";
-import "package:xml/xml.dart";
+import 'package:meta/meta.dart';
 
-import "src/aws_utils.dart";
+// clients
+import "src/aws4dart_dynamodb.dart";
+export "src/aws4dart_dynamodb.dart";
+import "src/aws4dart_s3.dart";
+export "src/aws4dart_s3.dart";
 
 part "src/aws.dart";
-// dynamodb
-part "src/dynamodb/dynamodb_client.dart";
-part "src/dynamodb/dynamodb_model.dart";
-// s3
-part "src/s3/s3_client.dart";
-part "src/s3/s3_model.dart";
-part "src/s3/s3_response.dart";
 
 /**
  * Get an AWS client 

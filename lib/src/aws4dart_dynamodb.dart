@@ -13,21 +13,17 @@
  * language governing permissions and limitations under the License.
  */
 
-part of aws4dart_s3;
-
 /**
- * List of all buckets owned by the authenticated user
+ * DynamoDB client library
  */
-class _ListBucketsResponse {
-  factory _ListBucketsResponse.fromXml(XmlElement elm) {
-    var owner = convertXmlElement("Owner", elm, (e) => new Owner._fromXml(e));
-    var buckets = convertXmlElementList("Bucket", elm, (e) => new Bucket._fromXml(e));
-    return new _ListBucketsResponse(buckets, owner);
-  }
-  
-  _ListBucketsResponse(this.buckets, this.owner);
-  
-  final List<Bucket> buckets;
-  final Owner owner;
-}
+library aws4dart_s3;
+
+import "dart:async";
+
+import "package:dice/dice.dart";
+
+import "shared/aws4dart_common.dart";
+
+part "dynamodb/dynamodb_client.dart";
+part "dynamodb/dynamodb_model.dart";
 

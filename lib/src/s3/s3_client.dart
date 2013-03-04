@@ -13,7 +13,7 @@
  * language governing permissions and limitations under the License.
  */
 
-part of aws4dart;
+part of aws4dart_s3;
 
 /**
  * Amazon S3 client

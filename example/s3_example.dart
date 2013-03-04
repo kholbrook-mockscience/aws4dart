@@ -13,21 +13,17 @@
  * language governing permissions and limitations under the License.
  */
 
-part of aws4dart_s3;
+import "package:aws4dart/aws4dart.dart";
 
-/**
- * List of all buckets owned by the authenticated user
- */
-class _ListBucketsResponse {
-  factory _ListBucketsResponse.fromXml(XmlElement elm) {
-    var owner = convertXmlElement("Owner", elm, (e) => new Owner._fromXml(e));
-    var buckets = convertXmlElementList("Bucket", elm, (e) => new Bucket._fromXml(e));
-    return new _ListBucketsResponse(buckets, owner);
-  }
+main() {
+  var awsClient = getAwsClient();
+  awsClient.config.loadFromEnv("AWS_CONFIG");
   
-  _ListBucketsResponse(this.buckets, this.owner);
-  
-  final List<Bucket> buckets;
-  final Owner owner;
+  awsClient.s3.createBucket(new Bucket('myBucket').then(() {
+    var params = {Bucket: 'myBucket', Key: 'myKey', Body: 'Hello!'};
+    awsClient.s3.putObject(params).then(() {
+      print("Successfully uploaded data to myBucket/myKey");
+    });
+  });
 }
 

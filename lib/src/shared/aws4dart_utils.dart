@@ -13,9 +13,12 @@
  * language governing permissions and limitations under the License.
  */
 
+/**
+ * Common internal functionality used accross clients (not! exported to end users).
+ */
 library aws4dart_utils;
 
-import "package:xml/xml.dart";
+import 'package:xml/xml.dart';
 
 String toISOString(DateTime date) => date.toString().replaceFirst(" ", "T");
 
