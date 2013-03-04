@@ -18,47 +18,16 @@ part of aws4dart;
 /**
  * List of all buckets owned by the authenticated user
  */
-class BucketsResult {
-  factory BucketsResult.fromXml(XmlElement elm) {
-    var owner = convertXmlElement("Owner", elm, (e) => new BucketOwner.fromXml(e));
-    var buckets = convertXmlElementList("Bucket", elm, (e) => new Bucket.fromXml(e));
-    return new BucketsResult(buckets, owner);
+class BucketsResponse {
+  factory BucketsResponse._fromXml(XmlElement elm) {
+    var owner = convertXmlElement("Owner", elm, (e) => new Owner._fromXml(e));
+    var buckets = convertXmlElementList("Bucket", elm, (e) => new Bucket._fromXml(e));
+    return new BucketsResponse._internal(buckets, owner);
   }
   
-  BucketsResult(this.buckets, this.owner);
+  BucketsResponse._internal(this.buckets, this.owner);
   
   final List<Bucket> buckets;
-  final BucketOwner owner;
-}
-
-/**
- * TODO describe
- */
-class Bucket {
-  factory Bucket.fromXml(XmlElement elm) {
-    var name = getXmlAsString("Name", elm);
-    var creationDate = getXmlAsDate("CreationDate", elm);
-    return new Bucket(name,creationDate);
-  }
-  
-  Bucket(this.name, this.creationDate);
-  
-  final String name;
-  final DateTime creationDate;
-}
-
-/**
- * TODO describe
- */
-class BucketOwner {
-  factory BucketOwner.fromXml(XmlElement elm) {
-    var id = getXmlAsString("ID", elm);
-    var displayName = getXmlAsString("DisplayName", elm);
-    return new BucketOwner(id, displayName);
-  }
-  
-  BucketOwner(this.id, this.displayName);
-  
-  final String id, displayName;
+  final Owner owner;
 }
 

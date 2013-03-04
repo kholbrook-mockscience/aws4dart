@@ -47,7 +47,7 @@ class S3Test {
           </ListAllMyBucketsResult>
           """;
         
-        s3.listBuckets().then(expectAsync1((BucketsResult res) {
+        s3.listBuckets().then(expectAsync1((BucketsResponse res) {
           expect(res.owner.id, equals("bcaf1ffd86f461ca5fb16fd081034f"));
           expect(res.owner.displayName, equals("webfile"));
           

@@ -30,9 +30,10 @@ import "src/aws_utils.dart";
 part "src/aws.dart";
 // dynamodb
 part "src/dynamodb/dynamodb_client.dart";
-part "src/dynamodb/dynamodb_response.dart";
+part "src/dynamodb/dynamodb_model.dart";
 // s3
 part "src/s3/s3_client.dart";
+part "src/s3/s3_model.dart";
 part "src/s3/s3_response.dart";
 
 /**

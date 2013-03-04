@@ -21,13 +21,13 @@ pub install aws4dart
 ```
 import "package:aws4dart/aws4dart.dart";
 main() {
-	var awsClient = getAwsClient();
-  	awsClient.config.loadFromPath('./aws-config.json');  
-  	awsClient.s3.createBucket(new Bucket('myBucket').then(() {
-    		var params = {Bucket: 'myBucket', Key: 'myKey', Body: 'Hello!'};
-    		awsClient.s3.putObject(params).then(() { 
-    			print( (err) ? err : "Successfully uploaded data to myBucket/myKey" );
-  			});
+  var awsClient = getAwsClient();
+  awsClient.config.loadFromPath('./aws-config.json');
+  awsClient.s3.createBucket(new Bucket('myBucket').then(() {
+    var params = {Bucket: 'myBucket', Key: 'myKey', Body: 'Hello!'};
+    awsClient.s3.putObject(params).then(() {
+      print("Successfully uploaded data to myBucket/myKey");
+  	});
 	});
 }
 ```

@@ -236,11 +236,11 @@ class S3Client {
    * 
    * See also [Amazon S3 Documentation for ListBuckets](http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTServiceGET.html)
    */
-  Future<BucketsResult> listBuckets() {
-    var completer = new Completer<BucketsResult>();
+  Future<BucketsResponse> listBuckets() {
+    var completer = new Completer<BucketsResponse>();
     _rpcClient.getXml(r"/listBuckets").then((String xml) {
       var dom = XML.parse(xml);
-      completer.complete(new BucketsResult.fromXml(dom));
+      completer.complete(new BucketsResponse._fromXml(dom));
     });
     return completer.future;
   }
