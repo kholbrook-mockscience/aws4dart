@@ -18,14 +18,14 @@ part of aws4dart;
 /**
  * List of all buckets owned by the authenticated user
  */
-class BucketsResponse {
-  factory BucketsResponse._fromXml(XmlElement elm) {
+class _ListBucketsResponse {
+  factory _ListBucketsResponse.fromXml(XmlElement elm) {
     var owner = convertXmlElement("Owner", elm, (e) => new Owner._fromXml(e));
     var buckets = convertXmlElementList("Bucket", elm, (e) => new Bucket._fromXml(e));
-    return new BucketsResponse._internal(buckets, owner);
+    return new _ListBucketsResponse(buckets, owner);
   }
   
-  BucketsResponse._internal(this.buckets, this.owner);
+  _ListBucketsResponse(this.buckets, this.owner);
   
   final List<Bucket> buckets;
   final Owner owner;

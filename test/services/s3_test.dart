@@ -47,15 +47,12 @@ class S3Test {
           </ListAllMyBucketsResult>
           """;
         
-        s3.listBuckets().then(expectAsync1((BucketsResponse res) {
-          expect(res.owner.id, equals("bcaf1ffd86f461ca5fb16fd081034f"));
-          expect(res.owner.displayName, equals("webfile"));
-          
-          expect(res.buckets.length, equals(2));
-          expect(res.buckets[0].name, equals("quotes"));
-          expect(res.buckets[0].creationDate, isDate);
-          expect(res.buckets[1].name, equals("samples"));
-          expect(res.buckets[1].creationDate, isDate);
+        s3.listBuckets().then(expectAsync1((List<Bucket> buckets) {
+          expect(buckets.length, equals(2));
+          expect(buckets[0].name, equals("quotes"));
+          expect(buckets[0].creationDate, isDate);
+          expect(buckets[1].name, equals("samples"));
+          expect(buckets[1].creationDate, isDate);
         }));
       });
     });
