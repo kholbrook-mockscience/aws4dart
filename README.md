@@ -13,7 +13,7 @@ pub install aws4dart
 ```
 
 2. Create a JSON config file containing the AWS credentials
-```
+```json
 { "accessKeyId": "akid", "secretAccessKey": "secret", "region": "us-west-2" }
 ```
 
