@@ -26,7 +26,7 @@ pub install aws4dart
   
       awsClient.s3.createBucket('myBucket').then((Bucket bucket) {
         awsClient.s3.putObject(bucket.name, "myKey", "hello").then((resp) {
-          print("Successfully uploaded data" to myBucket/myKey");
+          print("Successfully uploaded data to myBucket/myKey");
         });
       });
     }
