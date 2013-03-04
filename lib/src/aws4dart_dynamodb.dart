@@ -16,7 +16,7 @@
 /**
  * DynamoDB client library
  */
-library aws4dart_s3;
+library aws4dart_dynamodb;
 
 import "dart:async";
 
@@ -26,4 +26,6 @@ import "shared/aws4dart_common.dart";
 
 part "dynamodb/dynamodb_client.dart";
 part "dynamodb/dynamodb_model.dart";
+part "dynamodb/dynamodb_request.dart";
+part "dynamodb/dynamodb_response.dart";
 

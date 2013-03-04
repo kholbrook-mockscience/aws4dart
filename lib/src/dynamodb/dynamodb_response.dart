@@ -15,4 +15,17 @@
 
 part of aws4dart_dynamodb;
 
-// https://github.com/aws/aws-sdk-java/tree/master/src/main/java/com/amazonaws/services/dynamodb/model
+class BatchGetItemResponse { }
+class BatchWriteItemResponse { }
+class CreateTableResponse { }
+class DeleteItemResponse { }
+class DeleteTableResponse { }
+class DescribeTableResponse { }
+class GetItemResponse { }
+class ListTablesResponse { }
+class PutItemResponse { }
+class QueryResponse { }
+class ScanResponse { }
+class UpdateItemResponse { }
+class UpdateTableResponse { }
+
