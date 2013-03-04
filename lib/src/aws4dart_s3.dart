@@ -25,7 +25,6 @@ import "package:dice/dice.dart";
 import "package:xml/xml.dart";
 
 import "shared/aws4dart_common.dart"; 
-export "shared/aws4dart_common.dart" hide HttpMethodName;
 import "shared/aws4dart_utils.dart";
 
 /*

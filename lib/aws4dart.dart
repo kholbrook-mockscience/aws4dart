@@ -25,6 +25,9 @@ import 'package:dice/dice.dart';
 import "package:log4dart/log4dart_vm.dart";
 import 'package:meta/meta.dart';
 
+import "src/shared/aws4dart_common.dart";
+export "src/shared/aws4dart_common.dart" hide HttpMethodName;
+
 // clients
 import "src/aws4dart_dynamodb.dart";
 export "src/aws4dart_dynamodb.dart";
