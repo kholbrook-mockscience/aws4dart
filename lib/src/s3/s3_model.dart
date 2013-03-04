@@ -37,6 +37,8 @@ class Bucket {
   DateTime _creationDate;
 }
 
+class ObjectMetadata {}
+
 /**
  * Represents the owner of an Amazon S3 bucket.
  */

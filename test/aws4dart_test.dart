@@ -44,8 +44,8 @@ class AwsTestModule extends Module {
 }
 
 class AwsTestRpcClient implements AwsRpcClient {
-  Future<String> getXml(String path) => new Future.immediate(mocks[path]);
+  Future<String> getXml(AwsRequest request) => new Future.immediate(mocks[request.runtimeType]);
   
-  static Map<String, String> mocks = {};
+  static Map<Type, String> mocks = new Map<Type, String>();
 }
 

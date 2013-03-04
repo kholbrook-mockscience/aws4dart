@@ -19,9 +19,8 @@ main() {
   var awsClient = getAwsClient();
   awsClient.config.loadFromEnv("AWS_CONFIG");
   
-  awsClient.s3.createBucket(new Bucket('myBucket').then(() {
-    var params = {Bucket: 'myBucket', Key: 'myKey', Body: 'Hello!'};
-    awsClient.s3.putObject(params).then(() {
+  awsClient.s3.createBucket('myBucket').then((Bucket bucket) {
+    awsClient.s3.putObject(bucket.name, "myKey", "hello").then((resp) {
       print("Successfully uploaded data to myBucket/myKey");
     });
   });

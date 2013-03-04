@@ -27,7 +27,7 @@ class S3Test {
       
       test("listBuckets", () {
         // http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3/Client.html#listBuckets-property
-        AwsTestRpcClient.mocks[r"/listBuckets"] = 
+        AwsTestRpcClient.mocks[ListBucketsRequest] = 
           """
           <ListAllMyBucketsResult xmlns="http://doc.s3.amazonaws.com/2006-03-01">
             <Owner>

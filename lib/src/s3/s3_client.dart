@@ -34,35 +34,28 @@ class S3Client {
    *  
    *  See also [Amazon S3 Documentation for AbortMultipartUpload]()
    */
-  Future abortMultipartUpload(params, callback) => new Future.immediate(null);
+  abortMultipartUpload(final AbortMultipartUploadRequest request) => new Future.immediate(null);
   
   /**
    * Calls the CompleteMultipartUpload API operation.
    * 
    * See also [Amazon S3 Documentation for CompleteMultipartUpload]()
    */
-  Future completeMultipartUpload(params, callback)  => new Future.immediate(null);
+  Future<CompleteMultipartUploadResponse> completeMultipartUpload(CompleteMultipartUploadRequest request)  => new Future.immediate(null);
   
   /**
    * Calls the CopyObject API operation.
    * 
    * See also [Amazon S3 Documentation for CopyObject]()
    */
-  Future copyObject(params, callback)  => new Future.immediate(null);
+  Future<CopyObjectResponse> copyObject(String srcBucket, String srcKey, String destBucket, String destKey) => new Future.immediate(null);
   
   /**
    * Calls the CreateBucket API operation.
    * 
    * See also [Amazon S3 Documentation for CreateBucket]()
    */
-  Future createBucket(params, callback)  => new Future.immediate(null);
-  
-  /**
-   * Calls the CreateMultipartUpload API operation.
-   * 
-   * See also [Amazon S3 Documentation for CreateMultipartUpload]() 
-   */
-  Future createMultipartUpload(params, callback)  => new Future.immediate(null);
+  Future<Bucket> createBucket(String bucketName) => new Future.immediate(null);
   
   /**
    * Calls the DeleteBucket API operation.
@@ -231,6 +224,13 @@ class S3Client {
    * See also [Amazon S3 Documentation for HeadObject]()
    */
   Future headObject(params, callback) => new Future.immediate(null);
+  
+  /**
+   * Calls the InitiateMultipartUpload API operation.
+   * 
+   * See also [Amazon S3 Documentation for InitiateMultipartUpload](http://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadInitiate.html) 
+   */
+  Future<InitiateMultipartUploadResponse> initateMultipartUpload(final InitiateMultipartUploadRequest request) => new Future.immediate(null);
 
   /**
    * Calls the ListBuckets API operation.
@@ -239,9 +239,10 @@ class S3Client {
    */
   Future<List<Bucket>> listBuckets() {
     var completer = new Completer<List<Bucket>>();
-    _rpcClient.getXml(r"/listBuckets").then((String xml) {
+    var request = new ListBucketsRequest();
+    _rpcClient.getXml(request).then((String xml) {
       var dom = XML.parse(xml);
-      var response = new _ListBucketsResponse.fromXml(dom);
+      var response = new ListBucketsResponse._fromXml(dom);
       completer.complete(response.buckets);
     });
     return completer.future;
@@ -350,7 +351,7 @@ class S3Client {
    * 
    * See also [Amazon S3 Documentation for PutObject]()
    */
-  Future putObject(params, callback) => new Future.immediate(null);
+  Future<PutObjectResponse> putObject(String bucketName, String key, Stream data, [ObjectMetadata metadata = null]) => new Future.immediate(null);
   
   /**
    * Calls the PutObjectAcl API operation.

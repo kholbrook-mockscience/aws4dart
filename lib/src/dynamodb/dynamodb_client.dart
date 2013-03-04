@@ -41,84 +41,84 @@ class DynamodbClient {
    * 
    * See also [Amazon DynamoDB Documentation for BatchWriteItem](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/API_BatchWriteItem.html)
    */
-  Future<BatchWriteItemResponse> batchWriteItem(final BatchWriteItemRequest batchWriteItemRequest) => new Future.immediate(null);
+  Future<BatchWriteItemResponse> batchWriteItem(final BatchWriteItemRequest request) => new Future.immediate(null);
   
   /**
    * Calls the CreateTable API operation.
    * 
    * See also [Amazon DynamoDB Documentation for CreateTable](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/API_CreateTable.html)
    */
-  Future<CreateTableResponse> createTable(final CreateTableRequest createTableRequest) => new Future.immediate(null); 
+  Future<CreateTableResponse> createTable(final CreateTableRequest request) => new Future.immediate(null); 
   
   /**
    * Calls the DeleteItem API operation.
    * 
    * See also [Amazon DynamoDB Documentation for DeleteItem](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/API_DeleteItem.html)
    */
-  Future<DeleteItemResponse> deleteItem(final DeleteItemRequest deleteItemRequest) => new Future.immediate(null);
+  Future<DeleteItemResponse> deleteItem(final DeleteItemRequest request) => new Future.immediate(null);
   
   /**
    * Calls the DeleteTable API operation.
    * 
    * See also [Amazon DynamoDB Documentation for DeleteTable](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/API_DeleteTable.html)
    */
-  Future<DeleteTableResponse> deleteTable(final DeleteTableRequest deleteTableRequest) => new Future.immediate(null);
+  Future<DeleteTableResponse> deleteTable(final DeleteTableRequest request) => new Future.immediate(null);
   
   /**
    * Calls the DescribeTable API operation.
    * 
    * See also [Amazon DynamoDB Documentation for DescribeTable](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/API_DescribeTable.html)
    */
-  Future<DescribeTableResponse> describeTable(final DescribeTableRequest describeTableRequest) => new Future.immediate(null);
+  Future<DescribeTableResponse> describeTable(final DescribeTableRequest request) => new Future.immediate(null);
   
   /**
    * Calls the GetItem API operation.
    * 
    * See also [Amazon DynamoDB Documentation for GetItem](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/API_GetItem.html)
    */
-  Future<GetItemResponse> getItem(final GetItemRequest getItemRequest) => new Future.immediate(null);
+  Future<GetItemResponse> getItem(final GetItemRequest request) => new Future.immediate(null);
   
   /**
    * Calls the ListTables API operation.
    * 
    * See also [Amazon DynamoDB Documentation for ListTables](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/API_ListTables.html)
    */
-  Future<ListTablesResponse> listTables(final ListTablesRequest listTablesRequest) => new Future.immediate(null);
+  Future<ListTablesResponse> listTables(final ListTablesRequest request) => new Future.immediate(null);
   
   /**
    * Calls the PutItem API operation.
    * 
    * See also [Amazon DynamoDB Documentation for PutItem](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/API_PutItem.html)
    */
-  Future<PutItemResponse> putItem(final PutItemRequest putItemRequest) => new Future.immediate(null);
+  Future<PutItemResponse> putItem(final PutItemRequest request) => new Future.immediate(null);
   
   /**
    * Calls the Query API operation.
    * 
    * See also [Amazon DynamoDB Documentation for Query](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/API_Query.html)
    */
-  Future<QueryResponse> query(final QueryRequest queryRequest) => new Future.immediate(null);
+  Future<QueryResponse> query(final QueryRequest request) => new Future.immediate(null);
   
   /**
    * Calls the Scan API operation.
    * 
    * See also [Amazon DynamoDB Documentation for Scan](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/API_Scan.html)
    */
-  Future<ScanResponse> scan(final ScanRequest scanRequest) => new Future.immediate(null);
+  Future<ScanResponse> scan(final ScanRequest request) => new Future.immediate(null);
   
   /**
    * Calls the UpdateItem API operation.
    * 
    * See also [Amazon DynamoDB Documentation for UpdateItem](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/API_UpdateItem.html)
    */
-  Future<UpdateItemResponse> updateItem(final UpdateItemRequest updateItemRequest) => new Future.immediate(null);
+  Future<UpdateItemResponse> updateItem(final UpdateItemRequest request) => new Future.immediate(null);
   
   /**
    * Calls the UpdateTable API operation.
    * 
    * See also [Amazon DynamoDB Documentation for UpdateTable](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/API_UpdateTable.html)
    */
-  Future<UpdateTableResponse> updateTable(final UpdateTableRequest updateTableRequest) => new Future.immediate(null);
+  Future<UpdateTableResponse> updateTable(final UpdateTableRequest request) => new Future.immediate(null);
 
   final AwsRpcClient _rpcClient;
 }

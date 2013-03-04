@@ -15,19 +15,19 @@
 
 part of aws4dart_dynamodb;
 
-class BatchGetItemRequest { }
-class BatchWriteItemRequest { }
-class CreateTableRequest { }
-class DeleteItemRequest { }
-class DeleteTableRequest { }
-class DescribeTableRequest { }
-class GetItemRequest { }
-class ListTablesRequest { }
-class PutItemRequest { }
-class QueryRequest { }
-class ScanRequest { }
-class UpdateItemRequest { }
-class UpdateTableRequest { }
+class BatchGetItemRequest extends AwsRequest { }
+class BatchWriteItemRequest extends AwsRequest { }
+class CreateTableRequest extends AwsRequest { }
+class DeleteItemRequest extends AwsRequest { }
+class DeleteTableRequest extends AwsRequest { }
+class DescribeTableRequest extends AwsRequest { }
+class GetItemRequest extends AwsRequest { }
+class ListTablesRequest extends AwsRequest { }
+class PutItemRequest extends AwsRequest { }
+class QueryRequest extends AwsRequest { }
+class ScanRequest extends AwsRequest { }
+class UpdateItemRequest extends AwsRequest { }
+class UpdateTableRequest extends AwsRequest { }
 
 
 

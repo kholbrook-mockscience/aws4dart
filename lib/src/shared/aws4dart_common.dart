@@ -31,10 +31,9 @@ abstract class AwsHttpClient {
  * Client for making HTTP requests against Amazon's web services
  */
 class AwsRpcClient {
-  AwsRpcClient();
-
-  Future<String> getXml(String url) {
+  Future<String> getXml(AwsRequest request) {
     var completer = new Completer<String>();
+    String url = "TODO";
     get(url).then((Response response) {
       if(response.statusCode != 200) {
         completer.completeError(new AwsError("STS faild with", response.statusCode));

@@ -15,19 +15,27 @@
 
 part of aws4dart_s3;
 
+class AbortMultipartUploadResponse {}
+class CompleteMultipartUploadResponse {}
+class CopyObjectResponse {}
+class CreateBucketResponse {}
+class InitiateMultipartUploadResponse {}
+
 /**
  * List of all buckets owned by the authenticated user
  */
-class _ListBucketsResponse {
-  factory _ListBucketsResponse.fromXml(XmlElement elm) {
+class ListBucketsResponse {
+  factory ListBucketsResponse._fromXml(XmlElement elm) {
     var owner = convertXmlElement("Owner", elm, (e) => new Owner._fromXml(e));
     var buckets = convertXmlElementList("Bucket", elm, (e) => new Bucket._fromXml(e));
-    return new _ListBucketsResponse(buckets, owner);
+    return new ListBucketsResponse(buckets, owner);
   }
   
-  _ListBucketsResponse(this.buckets, this.owner);
+  ListBucketsResponse(this.buckets, this.owner);
   
   final List<Bucket> buckets;
   final Owner owner;
 }
+
+class PutObjectResponse {}
 
