@@ -18,18 +18,18 @@ pub install aws4dart
 ```
 
 3. Run it
-```
-import "package:aws4dart/aws4dart.dart";
-main() {
-  var awsClient = getAwsClient();
-  awsClient.config.loadFromPath("aws-config.json");
+```dart
+    import "package:aws4dart/aws4dart.dart";
+    main() {
+      var awsClient = getAwsClient();
+      awsClient.config.loadFromPath("aws-config.json");
   
-  awsClient.s3.createBucket('myBucket').then((Bucket bucket) {
-    awsClient.s3.putObject(bucket.name, "myKey", "hello").then((resp) {
-      print("Successfully uploaded data" to myBucket/myKey");
-    });
-  });
-}
+      awsClient.s3.createBucket('myBucket').then((Bucket bucket) {
+        awsClient.s3.putObject(bucket.name, "myKey", "hello").then((resp) {
+          print("Successfully uploaded data" to myBucket/myKey");
+        });
+      });
+    }
 ```
 
 Supported Services
@@ -137,7 +137,7 @@ Supported Services
       <td>2012-01-25</td>
     </tr>
     <tr>
-      <!-- TODO next -->
+      TODO next
       <td>Amazon Simple Email Service</td>
       <td>2010-12-01</td>
     </tr>
@@ -146,7 +146,7 @@ Supported Services
       <td>2010-03-31</td>
     </tr>
     <tr>
-      <!-- TODO next -->
+      TODO next
       <td>Amazon Simple Queue Service</td>
       <td>2012-11-05</td>
     </tr>
@@ -155,7 +155,7 @@ Supported Services
       <td>2012-06-30</td>
     </tr>
     <tr>
-       <!-- TODO likely a part of DynamoDB -->
+       TODO likely a part of DynamoDB
       <td>AWS Security Token Service</td>
       <td>2011-06-15</td>
     </tr-->
