@@ -20,7 +20,6 @@ pub install aws4dart
 3. Run it
 ```
 import "package:aws4dart/aws4dart.dart";
-
 main() {
   var awsClient = getAwsClient();
   awsClient.config.loadFromPath("aws-config.json");
