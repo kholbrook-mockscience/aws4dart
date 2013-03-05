@@ -16,14 +16,25 @@
 part of aws4dart_s3;
 
 class AbortMultipartUploadResponse {}
+
 class CompleteMultipartUploadResponse {}
+
 class CopyObjectResponse {}
+
 class CreateBucketResponse {}
+
+class DeleteBucketResponse {}
+
+class DeleteBucketPolicyResponse {}
+
+class DeleteBucketWebsiteResponse {}
+
+class DeleteObjectsResponse {}
+
+class GenericBucketResponse {}
+
 class InitiateMultipartUploadResponse {}
 
-/**
- * List of all buckets owned by the authenticated user
- */
 class ListBucketsResponse {
   factory ListBucketsResponse._fromXml(XmlElement elm) {
     var owner = convertXmlElement("Owner", elm, (e) => new Owner._fromXml(e));

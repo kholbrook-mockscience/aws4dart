@@ -34,7 +34,7 @@ class S3Client {
    *  
    *  See also [Amazon S3 Documentation for AbortMultipartUpload]()
    */
-  abortMultipartUpload(final AbortMultipartUploadRequest request) => new Future.immediate(null);
+  abortMultipartUpload(AbortMultipartUploadRequest request) => throw "TODO";
   
   /**
    * Calls the CompleteMultipartUpload API operation.
@@ -62,56 +62,56 @@ class S3Client {
    * 
    * See also [Amazon S3 Documentation for DeleteBucket]()
    */
-  Future deleteBucket(params, callback) => new Future.immediate(null);
+  deleteBucket(String bucketName) => throw "TODO";
   
   /**
    * Calls the DeleteBucketCors API operation.
    * 
    * See also [Amazon S3 Documentation for DeleteBucketCors]() 
    */
-  Future deleteBucketCors(params, callback) => new Future.immediate(null);
+  deleteBucketCors(String bucketName) => throw "TODO";
 
   /**
    *  Calls the DeleteBucketLifecycle API operation.
    *  
    *  See also [Amazon S3 Documentation for DeleteBucketLifecycle]()
    */
-  Future deleteBucketLifecycle(params, callback) => new Future.immediate(null);
+  deleteBucketLifecycle(String bucketName) => throw "TODO";
  
   /**
    * Calls the DeleteBucketPolicy API operation.
    * 
    * See also [Amazon S3 Documentation for DeleteBucketPolicy]()
    */
-  Future deleteBucketPolicy(params, callback) => new Future.immediate(null);
+  deleteBucketPolicy(String bucketName) => throw "TODO";
   
   /**
    * Calls the DeleteBucketTagging API operation.
    * 
    * See also [Amazon S3 Documentation for DeleteBucketTagging]()
    */
-  Future deleteBucketTagging(params, callback) => new Future.immediate(null);
+  deleteBucketTagging(String bucketName) => throw "TODO";
 
   /**
    * Calls the DeleteBucketWebsite API operation.
    * 
    * See also [Amazon S3 Documentation for DeleteBucketWebsite]()
    */
-  Future deleteBucketWebsite(params, callback) => new Future.immediate(null);
+  deleteBucketWebsite(String bucketName) => throw "TODO";
 
   /**
    * Calls the DeleteObject API operation.
    * 
    * See also [Amazon S3 Documentation for DeleteObject]()
    */
-  Future deleteObject(params, callback) => new Future.immediate(null);
+  deleteObject(String bucketName, String key) => throw "TODO";
  
   /**
    * Calls the DeleteObjects API operation.
    * 
    * See also [Amazon S3 Documentation for DeleteObjects]()
    */
-  Future deleteObjects(params, callback) => new Future.immediate(null);
+  Future<DeleteObjectsResponse> deleteObjects(DeleteObjectsRequest request) => new Future.immediate(null);
   
   /**
    * Calls the GetBucketAcl API operation.

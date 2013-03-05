@@ -16,9 +16,25 @@
 part of aws4dart_s3;
 
 class AbortMultipartUploadRequest extends AwsRequest {}
+
 class CompleteMultipartUploadRequest extends AwsRequest {}
+
 class CopyObjectRequest extends AwsRequest {}
+
 class CreateBucketRequest extends AwsRequest {}
+
+class DeleteBucketRequest extends AwsRequest {}
+
+class DeleteBucketPolicyRequest extends AwsRequest {}
+
+class DeleteBucketWebsiteRequest extends AwsRequest {}
+
+class DeleteObjectsRequest extends AwsRequest {}
+
+class GenericBucketRequest extends AwsRequest {}
+
 class InitiateMultipartUploadRequest extends AwsRequest {}
+
 class ListBucketsRequest extends AwsRequest {}
+
 class PutObjectRequest extends AwsRequest {} 
