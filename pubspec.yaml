@@ -10,6 +10,5 @@ dependencies:
   log4dart: any
   meta: any
   unittest: any
-  xml: 
-    git: git@github.com:prujohn/dart-xml.git
+  xml: any
 

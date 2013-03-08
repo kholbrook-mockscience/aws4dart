@@ -25,9 +25,9 @@ main() {
       var key = "secret";
     
       var sha256 = new SHA256();
-      var digest = (sha256..add(strToSign.charCodes)).close();
+      var digest = (sha256..add(strToSign.codeUnits)).close();
       
-      var hmac = new HMAC(new SHA256(), key.charCodes);
+      var hmac = new HMAC(new SHA256(), key.codeUnits);
       var hmacDigest = (hmac..add(digest)).close();
     
       var res = CryptoUtils.bytesToBase64(hmacDigest);
