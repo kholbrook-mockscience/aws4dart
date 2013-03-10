@@ -7,6 +7,8 @@ dependencies:
   dice:
     git: git://github.com/ltackmann/dice.git
   http: any
+  # TODO remove when http is fixed
+  pathos: any
   log4dart: any
   meta: any
   unittest: any

@@ -10,7 +10,7 @@ library aws4dart_s3;
 import "dart:async";
 
 import "package:dice/dice.dart";
-//import "package:http/http.dart";
+import "package:http/http.dart";
 import "package:xml/xml.dart";
 
 import "shared/aws4dart_common.dart"; 
