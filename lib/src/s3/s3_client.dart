@@ -32,30 +32,37 @@ class S3Client {
   /**
    *  Calls the AbortMultipartUpload API operation.
    *  
-   *  See also [Amazon S3 Documentation for AbortMultipartUpload]()
+   *  See also [Amazon S3 Documentation for AbortMultipartUpload](http://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadAbort.html)
    */
   abortMultipartUpload(AbortMultipartUploadRequest request) => throw "TODO";
   
   /**
    * Calls the CompleteMultipartUpload API operation.
    * 
-   * See also [Amazon S3 Documentation for CompleteMultipartUpload]()
+   * See also [Amazon S3 Documentation for CompleteMultipartUpload](http://docs.amazonwebservices.com/AmazonS3/latest/API/mpUploadComplete.html)
    */
   Future<CompleteMultipartUploadResponse> completeMultipartUpload(CompleteMultipartUploadRequest request)  => new Future.immediate(null);
   
   /**
    * Calls the CopyObject API operation.
    * 
-   * See also [Amazon S3 Documentation for CopyObject]()
+   * See also [Amazon S3 Documentation for CopyObject](http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTObjectCOPY.html)
    */
   Future<CopyObjectResponse> copyObject(String srcBucket, String srcKey, String destBucket, String destKey) => new Future.immediate(null);
   
   /**
    * Calls the CreateBucket API operation.
    * 
-   * See also [Amazon S3 Documentation for CreateBucket]()
+   * See also [Amazon S3 Documentation for CreateBucket](http://docs.amazonwebservices.com/AmazonS3/latest/API/RESTBucketPUT.html)
    */
   Future<Bucket> createBucket(String bucketName) => new Future.immediate(null);
+  
+  /**
+   * Calls the CreateMultipartUpload API operation.
+   * 
+   * See also [Amazon S3 Documentation for CreateMultipartUpload](http://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadInitiate.html) 
+   */
+  Future<CreateMultipartUploadResponse> createMultipartUpload(final CreateMultipartUploadRequest request) => new Future.immediate(null);
   
   /**
    * Calls the DeleteBucket API operation.
@@ -225,12 +232,7 @@ class S3Client {
    */
   Future headObject(params, callback) => new Future.immediate(null);
   
-  /**
-   * Calls the InitiateMultipartUpload API operation.
-   * 
-   * See also [Amazon S3 Documentation for InitiateMultipartUpload](http://docs.aws.amazon.com/AmazonS3/latest/API/mpUploadInitiate.html) 
-   */
-  Future<InitiateMultipartUploadResponse> initateMultipartUpload(final InitiateMultipartUploadRequest request) => new Future.immediate(null);
+  
 
   /**
    * Calls the ListBuckets API operation.

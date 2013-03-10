@@ -23,6 +23,8 @@ class CopyObjectResponse {}
 
 class CreateBucketResponse {}
 
+class CreateMultipartUploadResponse {}
+
 class DeleteBucketResponse {}
 
 class DeleteBucketPolicyResponse {}
@@ -32,8 +34,6 @@ class DeleteBucketWebsiteResponse {}
 class DeleteObjectsResponse {}
 
 class GenericBucketResponse {}
-
-class InitiateMultipartUploadResponse {}
 
 class ListBucketsResponse {
   factory ListBucketsResponse._fromXml(XmlElement elm) {

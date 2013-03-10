@@ -26,8 +26,10 @@ class AwsClient {
   
   AwsClient._internal(Injector injector): 
     config = new AwsConfig(),
+    dynamodb = new DynamodbClient(injector),
     s3 = new S3Client(injector);
   
+  final DynamodbClient dynamodb;
   final S3Client s3;
   final AwsConfig config;
 }
@@ -45,17 +47,23 @@ class AwsConfig {
    */
   loadFromPath(String configPath) {
     var configFile = new File(configPath);
+    if(!configFile.existsSync()) {
+      throw new ArgumentError("no config file exists at path $configPath");
+    }
     _logger.debug("using config file ${configFile.fullPathSync()}");
-    assert(configFile.existsSync());
     _loadFromJson(configFile.readAsStringSync());
   }
   
   /**
-   * Load configuration from JSON file path described in [configPathEnv]
+   * Load configuration by resolving path of configuration file from environment variable [configPathEnv] 
    */
   loadFromEnv(String configPathEnv) {
-    // TODO resolve env
-    throw new UnsupportedError("TODO not implemented yet");
+    var env = Platform.environment;
+    if(!env.containsKey(configPathEnv)) {
+      throw new ArgumentError("no environment variable named $configPathEnv exists");
+    }
+    var configPath = env[configPathEnv];
+    loadFromPath(configPath);
   }
 
   /**

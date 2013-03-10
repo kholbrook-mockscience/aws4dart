@@ -21,7 +21,7 @@ library aws4dart_common;
 import "dart:async";
 import "dart:uri";
 
-//import 'package:http/http.dart';
+import 'package:http/http.dart';
 
 abstract class AwsHttpClient {
   Uri endpoint;

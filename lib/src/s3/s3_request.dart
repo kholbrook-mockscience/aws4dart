@@ -23,6 +23,8 @@ class CopyObjectRequest extends AwsRequest {}
 
 class CreateBucketRequest extends AwsRequest {}
 
+class CreateMultipartUploadRequest extends AwsRequest {}
+
 class DeleteBucketRequest extends AwsRequest {}
 
 class DeleteBucketPolicyRequest extends AwsRequest {}
@@ -32,8 +34,6 @@ class DeleteBucketWebsiteRequest extends AwsRequest {}
 class DeleteObjectsRequest extends AwsRequest {}
 
 class GenericBucketRequest extends AwsRequest {}
-
-class InitiateMultipartUploadRequest extends AwsRequest {}
 
 class ListBucketsRequest extends AwsRequest {}
 
