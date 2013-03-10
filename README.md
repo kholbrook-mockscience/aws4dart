@@ -164,11 +164,12 @@ Supported Services
 
 Configuration
 -------------
+Configuration is controlled via JSON properties, that can be passed to the clients in one of these ways:
 
-1. Load from path: 
+* Load from path: 
   1. Create config file **aws-config.json** 
   1. Load it ```awsClient.config.loadFromPath("aws-config.json")```
-1. Load from environment variable
+* Load from environment variable
   1. Create a environment variable: ```sudo echo "setenv AWS_CONFIG /Users/lt/aws-config.json" >> /etc/launchd.conf```
   1. Load it ```awsClient.config.loadFromEnv("AWS_CONFIG")```
-1. Load directly: ```awsClient.config.update('{ "accessKeyId": "akid", "secretAccessKey": "secret", "region": "us-west-2" }')```
+* Load directly: ```awsClient.config.update('{ "accessKeyId": "akid", "secretAccessKey": "secret", "region": "us-west-2" }')```
