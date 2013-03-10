@@ -168,7 +168,7 @@ Configuration
 1. Load from path: 
   1. Create config file **aws-config.json** 
   1. Load it ```awsClient.config.loadFromPath("aws-config.json")```
-1. Load from ENV
-  1. Create a ENV with path to your config file in it ```sudo echo "setenv AWS_CONFIG /Users/lt/Documents/aws-config.json" >> /etc/launchd.conf```
+1. Load from environment variable
+  1. Create a environment variable (Mac example): ```sudo echo "setenv AWS_CONFIG /Users/lt/aws-config.json" >> /etc/launchd.conf```
   1. Load it ```awsClient.config.loadFromEnv("AWS_CONFIG")```
 1. Load directly: ```awsClient.config.update('{ "accessKeyId": "akid", "secretAccessKey": "secret", "region": "us-west-2" }')```
