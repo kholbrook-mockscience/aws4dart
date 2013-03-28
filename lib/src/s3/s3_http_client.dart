@@ -4,71 +4,168 @@
 
 part of aws4dart_s3;
 
-class S3HttpClient extends AwsHttpClient {
+class _S3HttpClient extends AwsHttpClient {
 //List<Bucket> listBuckets(ListBucketsRequest listBucketsRequest)
   //throws AmazonClientException, AmazonServiceException {
   //  Request<ListBucketsRequest> request = createRequest(null, null, new ListBucketsRequest(), HttpMethodName.GET);
   //  return invoke(request, new Unmarshallers.ListBucketsUnmarshaller(), null, null);
   //}
-  
-  Request createRequest(String bucketName, String key, AwsRequest originalRequest, HttpMethodName httpMethod) {
-    var request = new DefaultRequest<X>(originalRequest, Constants.S3_SERVICE_NAME);
-    request.setHttpMethod(httpMethod);
-
-    // If we're using SSL and the bucket name contains a period, the hostname
-    // won't line up with the cert hostname pattern, since wildcards are only
-    // allowed to match one segment in a DNS name.
-    var sslCertMismatch = endpoint.scheme.toLowerCase() == "https" &&
-        bucketName != null && bucketName.contains(".");
-
-    if (!clientOptions.isPathStyleAccess() && bucketNameUtils.isDNSBucketName(bucketName) &&
-        !validIP(endpoint.getHost()) && !sslCertMismatch) {
-      request.setEndpoint(convertToVirtualHostEndpoint(bucketName));
-      request.setResourcePath(ServiceUtils.urlEncode(key));
-    } else {
-      request.setEndpoint(endpoint);
-
-      if (bucketName != null) {
-        /*
-         * We don't URL encode the bucket name, since it shouldn't
-         * contain any characters that need to be encoded based on
-         * Amazon S3's naming restrictions.
-         */
-        request.setResourcePath(bucketName + "/"
-            + (key != null ? ServiceUtils.urlEncode(key) : ""));
-      }
-    }
-
-    return request;
-  }
-  
-  Future<String> invoke(Request<Y> request, String bucket, String key) {
-    for (Entry<String, String> entry : request.getOriginalRequest().copyPrivateRequestParameters().entrySet()) {
-      request.addParameter(entry.getKey(), entry.getValue());
-    }
-
-    /*
-     * The string we sign needs to include the exact headers that we
-     * send with the request, but the client runtime layer adds the
-     * Content-Type header before the request is sent if one isn't set, so
-     * we have to set something here otherwise the request will fail.
-     */
-    if (request.getHeaders().get("Content-Type") == null) {
-      request.addHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
-    }
-
-    AWSCredentials credentials = awsCredentialsProvider.getCredentials();
-    AmazonWebServiceRequest originalRequest = request.getOriginalRequest();
-    if (originalRequest != null && originalRequest.getRequestCredentials() != null) {
-      credentials = originalRequest.getRequestCredentials();
-    }
-
-    ExecutionContext executionContext = createExecutionContext();
-    executionContext.setSigner(createSigner(request, bucket, key));
-    executionContext.setCredentials(credentials);
-
-    return client.execute(request, responseHandler, errorResponseHandler, executionContext);
-  }
 }
+
+
+
+/*
+  https://github.com/aws/aws-sdk-net/tree/master/AWSSDK/Amazon.S3/Model
+  public ListBucketsResponse ListBuckets(ListBucketsRequest request)
+        {
+            ConvertListBuckets(request);
+            S3AsyncResult asyncResult = new S3AsyncResult(request, true);
+            invoke<ListBucketsResponse>(asyncResult);
+            return EndListBuckets(asyncResult);
+        }
+ 
+  void invoke<T>(S3AsyncResult s3AsyncResult, bool isRedirect) where T : S3Response, new()
+        {
+            if (s3AsyncResult.S3Request == null)
+            {
+                throw new AmazonS3Exception("No request specified for the S3 operation!");
+            }
+
+            string userAgent = config.UserAgent + " " + (s3AsyncResult.CompletedSynchronously ? "S3Sync" : "S3Async");
+            s3AsyncResult.S3Request.Headers[AWSSDKUtils.UserAgentHeader] = userAgent;
+
+            ProcessRequestHandlers(s3AsyncResult.S3Request);
+
+            ImmutableCredentials immutableCredentials = credentials == null ? null : credentials.GetCredentials();
+            try
+            {
+                if (!isRedirect)
+                {
+                    addS3QueryParameters(s3AsyncResult.S3Request, immutableCredentials);
+                }
+
+                WebHeaderCollection headers = s3AsyncResult.S3Request.Headers;
+                Map parameters = s3AsyncResult.S3Request.parameters;
+                Stream fStream = s3AsyncResult.S3Request.InputStream;
+
+                // if credentials are present (non-anonymous) sign the request
+                if (immutableCredentials != null)
+                {
+                    string toSign = buildSigningString(parameters, headers);
+                    string auth;
+                    if (immutableCredentials.UseSecureStringForSecretKey)
+                    {
+                        KeyedHashAlgorithm algorithm = new HMACSHA1();
+                        auth = AWSSDKUtils.HMACSign(toSign, immutableCredentials.SecureSecretKey, algorithm);
+                    }
+                    else
+                    {
+                        KeyedHashAlgorithm algorithm = new HMACSHA1();
+                        auth = AWSSDKUtils.HMACSign(toSign, immutableCredentials.ClearSecretKey, algorithm);
+                    }
+                    parameters[S3QueryParameter.Authorization] = auth;
+                }
+
+                string actionName = parameters[S3QueryParameter.Action];
+                string verb = parameters[S3QueryParameter.Verb];
+
+                LOGGER.DebugFormat("Starting request (id {0}) for {0}", s3AsyncResult.S3Request.Id, actionName);
+
+                // Variables that pertain to PUT requests
+                byte[] requestData = Encoding.UTF8.GetBytes("");
+                long reqDataLen = 0;
+
+                validateVerb(verb);
+
+                if (verb.Equals(S3Constants.PutVerb) || verb.Equals(S3Constants.PostVerb))
+                {
+                    if (parameters.ContainsKey(S3QueryParameter.ContentBody))
+                    {
+                        string reqBody = parameters[S3QueryParameter.ContentBody];
+                        s3AsyncResult.S3Request.BytesProcessed = reqBody.Length;
+                        LOGGER.DebugFormat("Request (id {0}) body's length [{1}]", s3AsyncResult.S3Request.Id, reqBody.Length);
+                        requestData = Encoding.UTF8.GetBytes(reqBody);
+
+                        // Since there is a request body, determine the length of the
+                        // data that will be sent to the server.
+                        reqDataLen = requestData.Length;
+                        parameters[S3QueryParameter.ContentLength] = reqDataLen.ToString();
+                    }
+
+                    if (parameters.ContainsKey(S3QueryParameter.ContentLength))
+                    {
+                        reqDataLen = Int64.Parse(parameters[S3QueryParameter.ContentLength]);
+                    }
+                }
+
+                int maxRetries = config.IsSetMaxErrorRetry() ? config.MaxErrorRetry : AWSSDKUtils.DefaultMaxRetry;
+
+                if (fStream != null)
+                {
+                    s3AsyncResult.OrignalStreamPosition = fStream.Position;
+                }
+
+                HttpWebRequest request = configureWebRequest(s3AsyncResult.S3Request, reqDataLen, immutableCredentials);
+
+                parameters[S3QueryParameter.RequestAddress] = request.Address.ToString();
+
+                try
+                {
+                    s3AsyncResult.RequestState = new RequestState(request, parameters, fStream, requestData, reqDataLen, s3AsyncResult.S3Request.ElapsedTicks);
+                    if (reqDataLen > 0)
+                    {
+                        if (s3AsyncResult.CompletedSynchronously)
+                        {
+                            this.getRequestStreamCallback<T>(s3AsyncResult);
+                        }
+                        else
+                        {
+                            IAsyncResult httpResult = request.BeginGetRequestStream(new AsyncCallback(this.getRequestStreamCallback<T>), s3AsyncResult);
+                            if (httpResult.CompletedSynchronously)
+                            {
+                                if (!s3AsyncResult.RequestState.GetRequestStreamCallbackCalled)
+                                {
+                                    getRequestStreamCallback<T>(httpResult);
+                                }
+                                s3AsyncResult.SetCompletedSynchronously(true);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (s3AsyncResult.CompletedSynchronously)
+                        {
+                            this.getResponseCallback<T>(s3AsyncResult);
+                        }
+                        else
+                        {
+                            IAsyncResult httpResult = request.BeginGetResponse(new AsyncCallback(this.getResponseCallback<T>), s3AsyncResult);
+                            if (httpResult.CompletedSynchronously)
+                            {
+                                if (!s3AsyncResult.RequestState.GetResponseCallbackCalled)
+                                {
+                                    getResponseCallback<T>(httpResult);
+                                }
+                                s3AsyncResult.SetCompletedSynchronously(true);
+                            }
+                        }
+                    }
+                }
+                catch (Exception e)
+                {
+                    LOGGER.Error(e, "Error starting async http operation");
+                    throw;
+                }
+            }
+            finally
+            {
+                if (immutableCredentials != null)
+                {
+                    immutableCredentials.Dispose();
+                }
+            }
+        }
+ 
+ */
 
 

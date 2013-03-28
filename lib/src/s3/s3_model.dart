@@ -10,13 +10,7 @@ part of aws4dart_s3;
 class Bucket {
   // https://github.com/aws/aws-sdk-java/blob/master/src/main/java/com/amazonaws/services/s3/model/Bucket.java
   
-  factory Bucket._fromXml(XmlElement elm) {
-    var name = getXmlAsString("Name", elm);
-    var creationDate = getXmlAsDate("CreationDate", elm);
-    return new Bucket._internal(name,creationDate);
-  }
-  
-  Bucket._internal(this.name, this._creationDate);
+  Bucket.init(this.name, this._creationDate);
   
   Bucket(this.name);
   
@@ -33,12 +27,6 @@ class ObjectMetadata {}
  */
 class Owner {
   // https://github.com/aws/aws-sdk-java/blob/master/src/main/java/com/amazonaws/services/s3/model/Owner.java
-  
-  factory Owner._fromXml(XmlElement elm) {
-    var id = getXmlAsString("ID", elm);
-    var displayName = getXmlAsString("DisplayName", elm);
-    return new Owner(id, displayName);
-  }
   
   Owner(this.id, this.displayName);
   

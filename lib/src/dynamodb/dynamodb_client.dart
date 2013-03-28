@@ -4,19 +4,11 @@
 
 part of aws4dart_dynamodb;
 
-/**
- * Amazon DynamoDB client
- */
-class DynamodbClient {
+/** Amazon DynamoDB client */
+abstract class DynamodbClient {
+  factory DynamodbClient(AwsRpcClient rpcClient) => new _DynamodbClientImpl(rpcClient);
   // http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/DynamoDB/Client.html
   // https://github.com/aws/aws-sdk-java/blob/master/src/main/java/com/amazonaws/services/dynamodb/AmazonDynamoDBAsyncClient.java
-  
-  factory DynamodbClient(Injector injector) {
-    var rpcClient = injector.getInstance(AwsRpcClient);
-    return new DynamodbClient._internal(rpcClient);
-  }
-  
-  DynamodbClient._internal(this._rpcClient);
   
   /**
    * Calls the BatchGetItem API operation.
@@ -108,7 +100,5 @@ class DynamodbClient {
    * See also [Amazon DynamoDB Documentation for UpdateTable](http://docs.aws.amazon.com/amazondynamodb/latest/developerguide/API_UpdateTable.html)
    */
   Future<UpdateTableResponse> updateTable(final UpdateTableRequest request) => new Future.immediate(null);
-
-  final AwsRpcClient _rpcClient;
 }
 

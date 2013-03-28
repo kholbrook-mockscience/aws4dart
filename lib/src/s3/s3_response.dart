@@ -25,12 +25,6 @@ class DeleteObjectsResponse {}
 class GenericBucketResponse {}
 
 class ListBucketsResponse {
-  factory ListBucketsResponse._fromXml(XmlElement elm) {
-    var owner = convertXmlElement("Owner", elm, (e) => new Owner._fromXml(e));
-    var buckets = convertXmlElementList("Bucket", elm, (e) => new Bucket._fromXml(e));
-    return new ListBucketsResponse(buckets, owner);
-  }
-  
   ListBucketsResponse(this.buckets, this.owner);
   
   final List<Bucket> buckets;

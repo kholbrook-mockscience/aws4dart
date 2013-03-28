@@ -2,38 +2,11 @@
 // for details. All rights reserved. Use of this source code is governed 
 // by a Apache license that can be found in the LICENSE file.
 
-part of aws4dart;
+part of aws4dart_api;
 
-/**
- * TODO describe
- */
-class AwsClient {
-  factory AwsClient(Module module) {
-    var injector = new Injector(module);
-    return new AwsClient._internal(injector);
-  }
-  
-  AwsClient._internal(Injector injector): 
-    config = new AwsConfig(),
-    dynamodb = new DynamodbClient(injector),
-    s3 = new S3Client(injector);
-  
-  final DynamodbClient dynamodb;
-  final S3Client s3;
-  final AwsConfig config;
-}
-
-/**
- * Configuration values for Amazon Web Services
- */
+/** Client settings for accessing Amazon Web Services */
 class AwsConfig {
-  AwsConfig():
-    _logger = LoggerFactory.getLoggerFor(AwsConfig),
-    _properties = {};
-  
-  /**
-   * Load configuration from JSON file located in [configPath]
-   */
+  /** Load configuration from JSON file located in [configPath] */
   loadFromPath(String configPath) {
     var configFile = new File(configPath);
     if(!configFile.existsSync()) {
@@ -43,9 +16,7 @@ class AwsConfig {
     _loadFromJson(configFile.readAsStringSync());
   }
   
-  /**
-   * Load configuration by resolving path of configuration file from environment variable [configPathEnv] 
-   */
+  /** Load configuration by resolving path of configuration file from environment variable [configPathEnv] */
   loadFromEnv(String configPathEnv) {
     var env = Platform.environment;
     if(!env.containsKey(configPathEnv)) {
@@ -55,28 +26,20 @@ class AwsConfig {
     loadFromPath(configPath);
   }
 
-  /**
-   * Use new JSON values passed in [config] as configuration properties
-   */
+  /** Use new JSON values passed in [config] as configuration properties */
   update(String config) => _loadFromJson(config);
   
   _loadFromJson(String json) {
     var cfg = JSON.parse(json);
   }
 
-  /**
-   * True if configuration value exists
-   */
+  /** True if configuration value exists */
   bool containsKey(String configName) => _properties.containsKey(configName);
 
-  /**
-   * Get configuration value
-   */
+  /** Get configuration value */
   operator [](String configName) => _properties[configName];
 
-  /**
-   * Get configuration value if it exists else return default value
-   */
+  /** Get configuration value if it exists else return default value */
   String getOrDefault(String configName, String defaultValue) {
     if(containsKey(configName)) {
       return this[configName];
@@ -89,17 +52,36 @@ class AwsConfig {
 
   String get secretAccessKey => this["secretAccessKey"];
 
-  final Logger _logger;
-  final Map<String,String> _properties;
+  final Logger _logger = LoggerFactory.getLoggerFor(AwsConfig);
+  final _properties = new Map<String,String>();
 }
 
-class _AwsModule extends Module {
-  @override 
-  configure() {
-    bind(AwsRpcClient).toInstance(new AwsRpcClient());
+/** Client for making HTTP requests against Amazon's web services */
+class AwsRpcClient {
+  Future<String> getXml(AwsRequest request) {
+    var completer = new Completer<String>();
+    String url = "TODO";
+    get(url).then((Response response) {
+      if(response.statusCode != 200) {
+        completer.completeError(new AwsError("request with", response.statusCode));
+      } else {
+        completer.complete(response.body);
+      }
+    });
+    
+    return completer.future;
   }
 }
 
+class AwsError implements Error {
+  AwsError(this.errorMessage, this.errorCode);
+  
+  final String errorMessage;
+  final int errorCode;
+}
+
+/** Base class for all Amazon web-service requests */
+abstract class AwsRequest { }
 
 
 

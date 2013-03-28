@@ -1,16 +1,16 @@
 name: aws4dart
-version: 0.1.0
+version: 0.2.0
 author: Lars Tackmann <lars@solvr.io>
 description: AWS SDK for Dart
 homepage: https://github.com/ltackmann/aws4dart
 dependencies:
-  dice:
-    git: git://github.com/ltackmann/dice.git
+  dice: any
   http: any
   # TODO remove when http is fixed
   pathos: any
   log4dart: any
   meta: any
-  unittest: any
   xml: any
+dev_dependencies:
+  unittest: any
 

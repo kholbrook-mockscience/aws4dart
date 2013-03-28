@@ -4,16 +4,15 @@
 
 library aws4dart_test;
 
-import "dart:async";
+import 'dart:async';
 
 import 'package:dice/dice.dart';
-import 'package:meta/meta.dart';
 import 'package:unittest/unittest.dart';
 
 import '../lib/aws4dart.dart';
 
-part "services/dynamodb_test.dart";
-part "services/s3_test.dart";
+part 'services/dynamodb_test.dart';
+part 'services/s3_test.dart';
 
 main() {
   var awsClient = getAwsTestClient(new AwsTestModule());
@@ -26,7 +25,6 @@ main() {
 Matcher isDate = new isInstanceOf<DateTime>();
 
 class AwsTestModule extends Module {
-  @override 
   configure() {
     bind(AwsRpcClient).toInstance(new AwsTestRpcClient());
   }

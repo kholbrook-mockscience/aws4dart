@@ -24,6 +24,20 @@ class DeleteObjectsRequest extends AwsRequest {}
 
 class GenericBucketRequest extends AwsRequest {}
 
-class ListBucketsRequest extends AwsRequest {}
+class ListBucketsRequest extends AwsRequest {
+  /*
+  ListBucketsRequest()
+  final method = HttpMethod.GET;
+  
+  private void ConvertListBuckets(ListBucketsRequest request)
+  {
+    Map parameters = request.parameters;
+
+    parameters[S3QueryParameter.Verb] = S3Constants.GetVerb;
+    parameters[S3QueryParameter.Action] = "ListBuckets";
+    request.RequestDestinationBucket = null;
+  }
+  */
+}
 
 class PutObjectRequest extends AwsRequest {} 

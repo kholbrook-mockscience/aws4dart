@@ -7,31 +7,56 @@
  */
 library aws4dart;
 
-import "dart:io";
-import "dart:json" as JSON;
+import "package:dice/dice.dart";
 
-import 'package:dice/dice.dart';
-import "package:log4dart/log4dart_vm.dart";
-import 'package:meta/meta.dart';
-
-import "src/shared/aws4dart_common.dart";
-export "src/shared/aws4dart_common.dart" hide HttpMethodName;
-
-// clients
+/* external api */
 import "src/aws4dart_dynamodb.dart";
-export "src/aws4dart_dynamodb.dart";
+export "src/dynamodb/aws4dart_dynamodb.dart";
 import "src/aws4dart_s3.dart";
-export "src/aws4dart_s3.dart";
+export "src/s3/aws4dart_s3.dart";
+import "src/aws4dart_api.dart";
+export "src/aws4dart_api.dart";
 
-part "src/aws.dart";
+/* implementation */
 
-/**
- * Get an AWS client 
- */
-AwsClient getAwsClient() => new AwsClient(new _AwsModule());
+/** Get an AWS client */
+AwsClient getAwsClient() => new _AwsClient(new _AwsModule());
 
-/**
- * Get an AWS client, suitable for unit and integration testing.
- */
-AwsClient getAwsTestClient(Module module) => new AwsClient(module);
+/** Get an AWS mock client, suitable for unit testing */
+AwsClient getAwsTestClient(Module module) => new _AwsClient(module);
 
+/** Amason Web Service client */
+abstract class AwsClient {  
+  /** DynamoDB client */
+  DynamodbClient get dynamodb;
+  
+  /** S3 client */
+  S3Client get s3;
+  
+  /** Client configuration */
+  AwsConfig get config;
+}
+
+/* client implementation */
+class _AwsClient implements AwsClient {
+  factory _AwsClient(Module module) {
+    var injector = new Injector(module);
+    var rpcClient = injector.getInstance(AwsRpcClient);
+    var dynamodbClient = new DynamodbClient(rpcClient);
+    var s3Client = new S3Client(rpcClient);
+    return new _AwsClient.init(dynamodbClient, s3Client);
+  }
+  
+  _AwsClient.init(this.dynamodb, this.s3); 
+
+  final DynamodbClient dynamodb;
+  final S3Client s3;
+  final AwsConfig config = new AwsConfig();
+}
+
+/* implementation bindings */
+class _AwsModule extends Module {
+  configure() {
+    bind(AwsRpcClient).toInstance(new AwsRpcClient());
+  }
+}

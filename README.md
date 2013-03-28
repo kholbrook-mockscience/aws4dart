@@ -7,9 +7,11 @@ SDK for using Amazon web services from Dart.
 Quick Guide
 -----------
 
-1. Install aws4dart with **pub**
+1. Add the folowing to your **pubspec.yaml** and run **pub install**
 ```
-pub install aws4dart
+dependencies:
+  aws4dart:
+    git: git://github.com/ltackmann/aws4dart.git
 ```
 
 2. Create a JSON config file containing the AWS credentials

@@ -2,12 +2,7 @@
 // for details. All rights reserved. Use of this source code is governed 
 // by a Apache license that can be found in the LICENSE file.
 
-/**
- * Common internal functionality used accross clients (not! exported to end users).
- */
-library aws4dart_utils;
-
-import 'package:xml/xml.dart';
+part of aws4dart_internal;
 
 String toISOString(DateTime date) => date.toString().replaceFirst(" ", "T");
 
@@ -51,50 +46,9 @@ String toUTCString(DateTime date) {
 String queryStringify(Map<String,String> query, {String separator:"&", String equal:"="}) {
   String res = "";
   query.forEach((key,val) {
-    res = res.concat("${separator}${key}${equal}${val}");
+    res = "${res}${separator}${key}${equal}${val}";
   });
   return res.substring(separator.length);
-}
-
-/**
- * TODO describe
- */
-class Header {
-  Header(this.type, String headerValue) {
-    value = headerValue;
-    assert(type.isValid);
-  }
-
-  String get name => type.name;
-
-  String get value => _value;
-
-  set value(String val) => _value = val.trim();
-
-  final HeaderType type;
-  String _value;
-}
-
-/**
- * TODO describe
- */
-class HeaderType {
-  const HeaderType(this.name, [ this.isAwsHeader = false ]);
-
-  static final HOST = const HeaderType("host");
-  static final AWS_AUTHORIZATION = const HeaderType("x-amzn-authorization", true);
-  static final AWS_DATE = const HeaderType("x-amz-date", true);
-  static final AWS_SECURITY_TOKEN = const HeaderType("x-amz-security-token", true);
-  static final AWS_TARGET = const HeaderType("x-amz-target", true);
-  static final CONTENT_TYPE = const HeaderType("content-type");
-
-  // header names must be lower case and contain no trailing whitespace
-  bool get isValid => (name.trim().toLowerCase() == name);
-
-  int get hashCode => name.hashCode;
-
-  final String name;
-  final bool isAwsHeader;
 }
 
 String getXmlAsString(String name, XmlElement elm) => convertXmlElement(name, elm, (XmlElement elm) => elm.text);
@@ -112,3 +66,8 @@ List<Object> convertXmlElementList(String name, XmlElement elm, Object converter
   var converted = result.map(converter);
   return new List.from(converted);
 }
+
+
+
+
+
