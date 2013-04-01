@@ -5,6 +5,8 @@
 part of aws4dart_s3;
 
 class _S3ClientImpl implements S3Client {
+  // http://docs.aws.amazon.com/AWSJavaScriptSDK/latest/AWS/S3/Client.html
+  // https://github.com/aws/aws-sdk-java/blob/master/src/main/java/com/amazonaws/services/s3/AmazonS3Client.java
   _S3ClientImpl(this._rpcClient);
   
   @override
