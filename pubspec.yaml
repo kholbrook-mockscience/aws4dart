@@ -9,7 +9,7 @@ dependencies:
   # TODO remove when http is fixed
   pathos: any
   log4dart: 1.4.0
-  meta: 0.4.3+1
+  meta: any
   xml: any
 dev_dependencies:
   unittest: any
