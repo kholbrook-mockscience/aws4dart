@@ -4,7 +4,7 @@ author: Lars Tackmann <lars@solvr.io>
 description: AWS SDK for Dart
 homepage: https://github.com/ltackmann/aws4dart
 dependencies:
-  dice: 1.0.5
+  dice: 1.1.0
   http: any
   # TODO remove when http is fixed
   pathos: any
